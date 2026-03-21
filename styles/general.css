@@ -4,7 +4,7 @@ body {
   overflow-x: hidden;
   font-family: "Bricolage Grotesque", sans-serif;
   color: white;
-  background-image: url(/images/niceRocket.jpg);
+  background-image: url(images/niceRocket.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
