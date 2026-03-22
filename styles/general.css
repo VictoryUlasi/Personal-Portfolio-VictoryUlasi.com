@@ -1,7 +1,8 @@
+/* ─── Base ─────────────────────────────────────────────── */
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  min-width: max-content;
   font-family: "Bricolage Grotesque", sans-serif;
   color: white;
   background-image: url(../images/niceRocket.jpg);
@@ -9,4 +10,110 @@ body {
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  overflow-x: hidden;
+}
+
+/* ─── Sections ──────────────────────────────────────────── */
+.section-1,
+.section-2,
+.section-3 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: background-color 2s;
+}
+
+.section-1:hover,
+.section-2:hover,
+.section-3:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.section-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10vh;
+}
+
+.section-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ─── Main header (section 1) ───────────────────────────── */
+.mainHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── About Me (section 2) ──────────────────────────────── */
+.about-me {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  width: 50vw;
+  min-width: 400px;
+  border-radius: 4rem;
+  padding: 0 30px;
+  transition: background-color 1s;
+}
+
+.about-me:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.about-me-img {
+  height: 75vh;
+  width: 25vw;
+  object-fit: cover;
+  border-radius: 4rem;
+}
+
+/* ─── Typography ────────────────────────────────────────── */
+.sectionTitle {
+  margin: 0;
+  padding-bottom: 40px;
+  font-size: 60pt;
+  font-weight: 400;
+  white-space: nowrap;
+  min-width: max-content;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#section-1-title {
+  padding-bottom: 0;
+}
+
+.sectionFilling {
+  margin: 0;
+  font-size: 15pt;
+  font-weight: 200;
+}
+
+.section-1 .sectionFilling {
+  white-space: nowrap;
+}
+
+/* ─── Projects (section 3) ──────────────────────────────── */
+.section-3-img-row {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }
