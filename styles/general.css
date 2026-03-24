@@ -4,16 +4,13 @@ body {
   padding: 0;
   font-family: "Bricolage Grotesque", sans-serif;
   color: white;
-  min-height: 100%;
-}
-
-html {
-  height: 100%;
-  background-image: url(../images/niceRocket.jpg);
+  background-image: url(../images/background_image.jpg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
   background-attachment: fixed;
+
+  overflow-x: hidden;
 }
 
 /* ─── Sections ──────────────────────────────────────────── */
@@ -82,7 +79,7 @@ html {
 
 .about-me-img {
   height: 60vh;
-  width: 400px;
+  max-width: 400px;
   object-position: 0 30%;
   flex-shrink: 0;
   object-fit: cover;
@@ -116,6 +113,13 @@ html {
   gap: 1rem;
 }
 
+.project-img {
+  height: 10vh;
+  max-width: 40vw;
+  object-fit: cover;
+  border-radius: 4rem;
+}
+
 /*Media Queries*/
 
 @media (max-width: 768px) {
@@ -129,10 +133,16 @@ html {
   }
   .about-me-img {
     margin-top: 10vh;
-    width: 300px;
-    height: 300px;
+    width: 60vw;
+    height: 35vh;
     object-fit: cover;
-    object-position: 0 20%;
+    object-position: center 20%;
     border-radius: 50%;
+  }
+}
+
+@media (max-width: 386px) {
+  body {
+    display: none;
   }
 }
