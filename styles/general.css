@@ -4,7 +4,6 @@ body {
   padding: 0;
   font-family: "Bricolage Grotesque", sans-serif;
   color: white;
-  overflow-x: hidden;
 }
 
 body::before {
@@ -24,7 +23,7 @@ body::before {
 .section-3 {
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   transition: background-color 2s;
 }
@@ -48,7 +47,6 @@ body::before {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
   gap: 1rem;
 }
 
@@ -76,7 +74,6 @@ body::before {
   height: 60vh;
   width: 50vw;
   border-radius: 4rem;
-  padding: 0 30px;
   transition: background-color 1s;
 }
 
@@ -87,6 +84,7 @@ body::before {
 .about-me-img {
   height: 60vh;
   width: 400px;
+  object-position: 0 30%;
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 4rem;
@@ -112,15 +110,11 @@ body::before {
   font-weight: 200;
 }
 
-.section-1 .sectionFilling {
-  white-space: nowrap;
-}
-
 /* ─── Projects (section 3) ──────────────────────────────── */
 .section-3-img-row {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 1rem;
 }
 
 /*Media Queries*/
