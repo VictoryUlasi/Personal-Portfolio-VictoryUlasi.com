@@ -8,7 +8,7 @@
   z-index: 400;
   width: 100vw;
   min-height: 10vh;
-  font-size: 12pt;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.15);
 }
@@ -42,8 +42,9 @@
 }
 
 /* Links */
-.headerBar span {
+.headerBar a {
   cursor: pointer;
+  color: white;
 }
 
 .header-3 {
