@@ -90,7 +90,7 @@ body {
 .sectionTitle {
   margin: 0;
   padding-bottom: 40px;
-  font-size: clamp(2rem, 5vw, 60pt);
+  font-size: clamp(1rem, 5vw, 60pt);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -102,7 +102,7 @@ body {
 
 .sectionFilling {
   margin: 0;
-  font-size: clamp(1rem, 2vw, 15pt);
+  font-size: clamp(0.6rem, 2vw, 15pt);
   font-weight: 200;
 }
 
@@ -133,16 +133,10 @@ body {
   }
   .about-me-img {
     margin-top: 10vh;
-    width: 60vw;
+    width: 300px;
     height: 35vh;
     object-fit: cover;
     object-position: center 20%;
     border-radius: 50%;
-  }
-}
-
-@media (max-width: 386px) {
-  body {
-    display: none;
   }
 }

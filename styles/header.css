@@ -11,7 +11,13 @@
   font-size: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.15);
-  padding: 1rem 1rem 1rem 1 rem;
+  padding: 0 1rem 0 1rem;
+  flex-wrap: nowrap;
+}
+
+.headerBar a,
+.headerBar div {
+  white-space: nowrap;
 }
 
 .headerBar * {
@@ -63,4 +69,8 @@
     flex-direction: column;
     align-items: center;
   }
+}
+
+@media (max-width: 500px) {
+  /* create hamburger menu with name at the top */
 }
