@@ -1,4 +1,4 @@
-/* ─── Nav Bar ───────────────────────────────────────────── */
+/* ─── Desktop Nav ───────────────────────────────────────── */
 .headerBar {
   position: fixed;
   top: 0;
@@ -18,7 +18,7 @@
   padding: 0;
   list-style: none;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; /* push links to the right */
   align-items: center;
 }
 
@@ -30,19 +30,23 @@
   align-items: center;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  cursor: pointer;
+  color: white;
 }
 
+/* Site name — pushed to the left with auto margin */
 .headerBar li:first-child {
   margin-right: auto;
   font-weight: 800;
   font-size: clamp(0.875rem, 1.5vw, 1.25rem);
 }
 
+/* Hamburger icon — hidden on desktop */
 .menu-icon {
   display: none;
 }
 
-/* Underline animation */
+/* ─── Underline Hover Animation ─────────────────────────── */
 .headerBar * {
   position: relative;
 }
@@ -66,31 +70,9 @@
   left: 0;
 }
 
-/* Links */
-.headerBar a {
-  cursor: pointer;
-  color: white;
-}
-
-.header-3 {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.header-3 a {
-  color: white;
-  text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .header-3 {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
+/* ─── Mobile Breakpoint ─────────────────────────────────── */
 @media (max-width: 800px) {
-  /* create hamburger menu with name at the top */
+  /* Hide nav links, show hamburger instead */
   .hideonmobile {
     display: none;
   }

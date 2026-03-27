@@ -1,20 +1,23 @@
 /* ─── Base ─────────────────────────────────────────────── */
 body {
   min-height: 100vh;
-  margin: 10vh 0 0 0;
+  margin: 0;
   padding: 0;
   font-family: "Bricolage Grotesque", sans-serif;
   color: white;
+  overflow-x: hidden;
+
+  /* Fixed background image — stays in place while scrolling */
   background-image: url(../images/background_image.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-
-  overflow-x: hidden;
 }
 
 /* ─── Sections ──────────────────────────────────────────── */
+
+/* Shared styles — each section fills the full viewport */
 .section-1,
 .section-2,
 .section-3 {
@@ -25,20 +28,29 @@ body {
   transition: background-color 2s;
 }
 
+/* Reveal background image on hover */
 .section-1:hover,
 .section-2:hover,
 .section-3:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* ─── Section 1: Hero ───────────────────────────────────── */
 .section-1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -10vh;
 }
 
+.mainHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Section 2: About Me ───────────────────────────────── */
 .section-2 {
   display: flex;
   flex-direction: row;
@@ -47,22 +59,6 @@ body {
   gap: 1rem;
 }
 
-.section-3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ─── Main header (section 1) ───────────────────────────── */
-.mainHeader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ─── About Me (section 2) ──────────────────────────────── */
 .about-me {
   display: flex;
   flex-direction: column;
@@ -81,33 +77,20 @@ body {
 .about-me-img {
   height: 60vh;
   max-width: 400px;
-  object-position: 0 30%;
-  flex-shrink: 0;
+  flex-shrink: 0; /* prevents flexbox from squishing the image */
   object-fit: cover;
+  object-position: 0 30%;
   border-radius: 4rem;
 }
 
-/* ─── Typography ────────────────────────────────────────── */
-.sectionTitle {
-  margin: 0;
-  padding-bottom: 40px;
-  font-size: clamp(1rem, 5vw, 60pt);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+/* ─── Section 3: Projects ───────────────────────────────── */
+.section-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#section-1-title {
-  padding-bottom: 0;
-}
-
-.sectionFilling {
-  margin: 0;
-  font-size: clamp(0.6rem, 2vw, 15pt);
-  font-weight: 200;
-}
-
-/* ─── Projects (section 3) ──────────────────────────────── */
 .section-3-img-row {
   display: flex;
   flex-direction: row;
@@ -121,17 +104,44 @@ body {
   border-radius: 4rem;
 }
 
-/*Media Queries*/
+/* ─── Typography ────────────────────────────────────────── */
 
+/* Section headings — scale with viewport, capped at 60pt */
+.sectionTitle {
+  margin: 0;
+  padding-bottom: 40px;
+  font-size: clamp(1rem, 5vw, 60pt);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Hero title has no bottom padding (subtitle sits right below) */
+#section-1-title {
+  padding-bottom: 0;
+}
+
+/* Body text — scales with viewport */
+.sectionFilling {
+  margin: 0;
+  font-size: clamp(0.6rem, 2vw, 15pt);
+  font-weight: 200;
+}
+
+/* ─── Mobile Breakpoint ─────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Stack image and text vertically */
   .section-2 {
     flex-direction: column;
     gap: 0;
   }
 
+  /* Full width text box on mobile */
   .about-me {
     width: 90vw;
   }
+
+  /* Circular profile image on mobile */
   .about-me-img {
     margin-top: 10vh;
     width: 250px;

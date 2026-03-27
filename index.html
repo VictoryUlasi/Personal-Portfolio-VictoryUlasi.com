@@ -5,43 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Victory Ulasi</title>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="styles/general.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/sidebar.css" />
+
+    <!-- Google Fonts: Bricolage Grotesque only (Roboto was unused) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Material Icons (menu + close) -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu"
     />
+
     <script src="Script/app.js"></script>
   </head>
   <body>
+    <!-- ─── Desktop Nav ─────────────────────────────────────── -->
     <nav class="headerBar">
       <ul>
-        <li>
-          <a href="#">Victory Ulasi</a>
-        </li>
+        <li><a href="#">Victory Ulasi</a></li>
         <li class="hideonmobile"><a href="#">About</a></li>
         <li class="hideonmobile"><a href="#">Projects</a></li>
         <li class="hideonmobile"><a href="#">Experience</a></li>
         <li class="hideonmobile"><a href="#">Contact</a></li>
+        <!-- Hamburger icon — hidden on desktop, shown on mobile -->
         <li onclick="showSidebar()" class="menu-icon">
-          <a href="#"><span class="material-symbols-outlined"> menu </span></a>
+          <a href="#"><span class="material-symbols-outlined">menu</span></a>
         </li>
       </ul>
     </nav>
 
+    <!-- ─── Mobile Sidebar ──────────────────────────────────── -->
     <nav class="sideBar">
       <ul>
+        <!-- Top row: site name + close button -->
         <li>
           <a class="sideBar-title" href="#">Victory Ulasi</a>
           <div onclick="hideSidebar()" class="close-btn">
-            <span class="material-symbols-outlined"> close </span>
+            <span class="material-symbols-outlined">close</span>
           </div>
         </li>
         <li><a href="#">About Me</a></li>
@@ -51,6 +59,7 @@
       </ul>
     </nav>
 
+    <!-- ─── Section 1: Hero ─────────────────────────────────── -->
     <section class="section-1">
       <section class="mainHeader">
         <h1 id="section-1-title" class="sectionTitle">Hi, I'm Victory Ulasi</h1>
@@ -58,6 +67,7 @@
       </section>
     </section>
 
+    <!-- ─── Section 2: About Me ─────────────────────────────── -->
     <section class="section-2">
       <div class="img-div">
         <img
@@ -75,15 +85,12 @@
           atque illo eligendi perferendis. Lorem, ipsum dolor sit amet
           consectetur adipisicing elit. Cumque nostrum beatae, voluptatem qui
           quos minima maiores facilis dolorum, omnis officia iure vel ipsam
-          laboriosam esse dignissimos natus expedita, quam ut! Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. In, optio quod? Doloremque,
-          quasi obcaecati eaque vel, tenetur modi quibusdam dignissimos
-          consequuntur recusandae, consectetur ratione quis! Tenetur voluptates
-          soluta officia quia!
+          laboriosam esse dignissimos natus expedita, quam ut!
         </p>
       </div>
     </section>
 
+    <!-- ─── Section 3: Projects ─────────────────────────────── -->
     <section class="section-3">
       <h2 class="sectionTitle">Projects</h2>
       <div class="section-3-img-row">
@@ -92,18 +99,14 @@
           class="project-img"
           alt="Project 1"
         />
-
         <img
           src="images/placeholder_image.jpg"
           class="project-img"
-          src=""
           alt="Project 2"
         />
-
         <img
           src="images/placeholder_image.jpg"
           class="project-img"
-          src=""
           alt="Project 3"
         />
       </div>
