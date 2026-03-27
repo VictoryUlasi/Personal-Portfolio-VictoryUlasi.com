@@ -47,14 +47,15 @@
   height: 10vh;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 3.5vw;
+  padding-left: 1vw;
+  padding-right: 3.5vw;
   font-weight: 800;
   font-size: clamp(0.875rem, 1.5vw, 1.25rem);
 }
 
 .sideBar span {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 /* ─── Close Button ──────────────────────────────────────── */

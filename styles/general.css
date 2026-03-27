@@ -24,15 +24,8 @@ body {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  transition: background-color 2s;
-}
-
-/* Reveal background image on hover */
-.section-1:hover,
-.section-2:hover,
-.section-3:hover {
   background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
 }
 
 /* ─── Section 1: Hero ───────────────────────────────────── */
@@ -56,26 +49,25 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
 }
 
 .about-me {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 60vh;
-  width: 50vw;
-  border-radius: 4rem;
+  max-width: 50vw;
+  gap: 1.5rem;
+  border-radius: 1rem;
   transition: background-color 1s;
 }
 
 .about-me:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .about-me-img {
-  height: 60vh;
+  height: 50vh;
   max-width: 400px;
   flex-shrink: 0; /* prevents flexbox from squishing the image */
   object-fit: cover;
@@ -109,7 +101,6 @@ body {
 /* Section headings — scale with viewport, capped at 60pt */
 .sectionTitle {
   margin: 0;
-  padding-bottom: 40px;
   font-size: clamp(1rem, 5vw, 60pt);
   font-weight: 400;
   text-transform: uppercase;
@@ -129,11 +120,11 @@ body {
 }
 
 /* ─── Mobile Breakpoint ─────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   /* Stack image and text vertically */
   .section-2 {
     flex-direction: column;
-    gap: 0;
+    gap: 1rem;
   }
 
   /* Full width text box on mobile */
@@ -149,5 +140,20 @@ body {
     object-fit: cover;
     object-position: center 20%;
     border-radius: 50%;
+  }
+
+  .about-me {
+    min-width: 90vw;
+  }
+}
+
+/* Full width sidebar on small phones — show site name again */
+@media (max-width: 600px) {
+  .sideBar {
+    width: 100vw;
+  }
+
+  .sideBar-title {
+    visibility: visible;
   }
 }
