@@ -33,6 +33,11 @@
   letter-spacing: 0.1em;
   cursor: pointer;
   color: white;
+  transition: 0.3s ease;
+}
+
+.headerBar li:not(:first-child) a:hover {
+  transform: scale(1.2);
 }
 
 /* Site name — pushed to the left with auto margin */

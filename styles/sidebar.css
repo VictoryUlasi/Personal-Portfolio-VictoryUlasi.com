@@ -37,6 +37,7 @@
 
 /* ─── Top Row: Site Name + Close Button ─────────────────── */
 .sideBar li:first-child {
+  font-family: "Story Script", sans-serif;
   position: absolute;
   top: 0;
   right: 0;
@@ -50,7 +51,7 @@
   padding-left: 1vw;
   padding-right: 3.5vw;
   font-weight: 800;
-  font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 .sideBar span {
