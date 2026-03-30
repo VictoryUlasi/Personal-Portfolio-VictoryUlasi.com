@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Permanent+Marker&family=Roboto:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap"
       rel="stylesheet"
     />
 
@@ -31,10 +31,10 @@
     <nav class="headerBar">
       <ul>
         <li><a href="#">Victory Ulasi</a></li>
-        <li class="hideonmobile"><a href="#">About</a></li>
-        <li class="hideonmobile"><a href="#">Projects</a></li>
+        <li class="hideonmobile"><a href="#about-sect">About</a></li>
+        <li class="hideonmobile"><a href="#project-sect">Projects</a></li>
         <li class="hideonmobile"><a href="#">Experience</a></li>
-        <li class="hideonmobile"><a href="#">Contact</a></li>
+        <li class="hideonmobile"><a href="#contact-sect">Contact</a></li>
         <!-- Hamburger icon — hidden on desktop, shown on mobile -->
         <li onclick="showSidebar()" class="menu-icon">
           <a href="#"><span class="material-symbols-outlined">menu</span></a>
@@ -52,10 +52,10 @@
             <span class="material-symbols-outlined">close</span>
           </div>
         </li>
-        <li><a href="#">About Me</a></li>
-        <li><a href="#">Projects</a></li>
+        <li><a href="#about-sect">About Me</a></li>
+        <li><a href="#project-sect">Projects</a></li>
         <li><a href="#">Experience</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#contact-sect">Contact</a></li>
       </ul>
     </nav>
 
@@ -68,7 +68,7 @@
     </section>
 
     <!-- ─── Section 2: About Me ─────────────────────────────── -->
-    <section class="section-2">
+    <section id="about-sect" class="section-2">
       <div class="img-div">
         <img
           class="about-me-img"
@@ -91,7 +91,7 @@
     </section>
 
     <!-- ─── Section 3: Projects ─────────────────────────────── -->
-    <section class="section-3">
+    <section id="project-sect" class="section-3">
       <h2 class="sectionTitle">Projects</h2>
       <div class="section-3-img-row">
         <img
@@ -109,6 +109,74 @@
           class="project-img"
           alt="Project 3"
         />
+      </div>
+    </section>
+
+    <!-- ─── Section 4: Contact ─────────────────────────────── -->
+    <section id="contact-sect" class="section-4">
+      <div class="contact-header">
+        <h2 class="sectionTitle">Get in Touch</h2>
+        <p class="sectionFilling">Feel free to reach out anytime...</p>
+      </div>
+      <div class="contact-img-row">
+        <a class="contact-link" href="#"
+          ><img
+            class="contact-img"
+            src="images/social-icons/mail_1324120.png"
+            alt=""
+          />
+          E-Mail</a
+        >
+        <a class="contact-link" href="#"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-instagram-500.png"
+            alt=""
+          />
+          Instagram</a
+        >
+        <a class="contact-link" href="#"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-facebook-500.png"
+            alt=""
+          />Facebook</a
+        >
+        <a class="contact-link" href="https://www.linkedin.com/in/victoryulasi/"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-linkedin-500.png"
+            alt=""
+          />LinkedIn</a
+        >
+        <a class="contact-link" href="https://github.com/VictoryUlasi"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-github-500.png"
+            alt=""
+          />Github</a
+        >
+        <a class="contact-link" href="https://www.youtube.com/@VictoryUUlasi"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-youtube-500.png"
+            alt=""
+          />Youtube</a
+        >
+        <a class="contact-link" href="#"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-tiktok-500.png"
+            alt=""
+          />TikTok</a
+        >
+        <a class="contact-link" href="#"
+          ><img
+            class="contact-img"
+            src="images/social-icons/icons8-whatsapp-500.png"
+            alt=""
+          />Whatsapp</a
+        >
       </div>
     </section>
   </body>

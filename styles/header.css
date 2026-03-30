@@ -1,12 +1,13 @@
 /* ─── Desktop Nav ───────────────────────────────────────── */
 .headerBar {
+  font-family: "Story Script", sans-serif;
   position: fixed;
   top: 0;
   z-index: 400;
   width: 100%;
   box-sizing: border-box;
   font-size: clamp(0.75rem, 1.5vw, 1rem);
-  font-weight: 500;
+  font-weight: 800;
   background-color: rgba(0, 0, 0, 0.055);
   backdrop-filter: blur(5px);
 }
@@ -38,7 +39,7 @@
 .headerBar li:first-child {
   margin-right: auto;
   font-weight: 800;
-  font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 /* Hamburger icon — hidden on desktop */
