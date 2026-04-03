@@ -23,8 +23,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu"
     />
-
-    <script src="Script/app.js"></script>
   </head>
   <body>
     <!-- ─── Desktop Nav ─────────────────────────────────────── -->
@@ -88,33 +86,133 @@
         <p class="sectionFilling">
           I'm Vic Ulasi, an aerospace engineering student at UT Arlington with a
           hands-on approach to design and systems. I build hardware projects
-          alongside my coursework I'm drawn to the intersection of mechanical
-          systems and controls, and I'm actively building toward industry
-          experience in AeroSpace Engineering. This site is where I document
-          what I'm learning and what I'm building.
+          alongside my coursework and am drawn to the intersection of mechanical
+          systems, structural analysis, and controls. I'm actively working
+          toward industry experience in aerospace engineering. This site is
+          where I document what I'm learning and what I'm building.
         </p>
       </div>
     </section>
 
     <!-- ─── Section 3: Projects ─────────────────────────────── -->
-    <section id="project-sect" class="section-3">
-      <h2 class="sectionTitle">Projects</h2>
-      <div class="section-3-img-row">
-        <img
-          src="images/placeholder_image.jpg"
-          class="project-img"
-          alt="Project 1"
-        />
-        <img
-          src="images/placeholder_image.jpg"
-          class="project-img"
-          alt="Project 2"
-        />
-        <img
-          src="images/placeholder_image.jpg"
-          class="project-img"
-          alt="Project 3"
-        />
+    <section class="section-3">
+      <div class="projects-header">
+        <h2 class="sectionTitle">Projects:</h2>
+        <div class="carousel-controls">
+          <button onclick="prevBtn()" id="prev">&#8592;</button>
+          <button onclick="nextBtn()" id="next">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="carousel-outer">
+        <div class="carousel-track">
+          <div class="project-card">
+            <img
+              src="images/project_Images/MAE-1351.jpeg"
+              alt="MAE 1351 Final Project"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">MAE 1351 Final Project</h3>
+              <p class="card-desc">
+                In a team of 4, designed and 3D printed a fully automated,
+                battery-powered ball-transfer mechanism controlled by an
+                Arduino, capable of acquiring and delivering ping pong balls
+                into a target cup from 6 feet away within 30 seconds. Integrated
+                DC motors, drive wheels, and buck converters for power
+                regulation into a self-contained system, with Arduino
+                programming handling motor and servo control
+              </p>
+              <div class="card-links">
+                <a><s>GitHub</s></a>
+                <a><s>Live Site</s></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img
+              src="images/project_Images/F405-Drone.jpeg"
+              alt="F405 Drone Build"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">F405 Drone Build</h3>
+              <p class="card-desc">
+                Over winter 2025 break, assembled a fully functional drone from
+                components including ESCs, flight controller, motors, and GPS,
+                performing all wiring and soldering. 3D printed custom housings
+                for the flight controller and GPS module, and configured flight
+                parameters and PID tuning in Betaflight
+              </p>
+              <div class="card-links">
+                <a
+                  href="https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F"
+                  >Youtube</a
+                >
+                <a><s>GitHub</s></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img
+              src="images/project_Images/lib_management.png"
+              alt="Library Management System"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Library Management System</h3>
+              <p class="card-desc">
+                Developed a console-based library management system in C++
+                featuring a menu-driven interface for adding and removing books
+                and users, issuing and returning books, and displaying
+                inventory. Implemented object-oriented design across three
+                classes — Book, User, and Library — with file I/O for persistent
+                data storage across sessions.
+              </p>
+              <div class="card-links">
+                <a
+                  href="https://github.com/VictoryUlasi/Library-Management-System"
+                  >GitHub</a
+                >
+                <a><s>Live Site</s></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img
+              src="images/project_Images/vectory_calculator.png"
+              alt="Project 3"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Vector Calculator + GUI</h3>
+              <p class="card-desc">
+                Developed a console-based vector calculator in C++ supporting
+                both 2D and 3D vectors, with operations including addition,
+                subtraction, scalar multiplication, dot product, cross product,
+                magnitude, and angle between vectors. Implemented custom
+                Vector2D and Vector3D classes with overloaded operators,
+                integrated Gnuplot for real-time vector visualization, and
+                extended the application with a Qt-based GUI transitioning from
+                a console interface to a fully graphical desktop application.
+              </p>
+              <div class="card-links">
+                <a href="https://github.com/VictoryUlasi/Vector-Calculator-GUI-"
+                  >GitHub</a
+                >
+                <a
+                  href="https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn"
+                  >Youtube</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- copy the project-card div for each project -->
+        </div>
       </div>
     </section>
 
@@ -125,28 +223,13 @@
         <p class="sectionFilling">Feel free to reach out anytime...</p>
       </div>
       <div class="contact-img-row">
-        <a class="contact-link" href="#"
+        <a class="contact-link" href="mailto:victoryulasi@icloud.com"
           ><img
             class="contact-img"
             src="images/social-icons/mail_1324120.png"
             alt=""
           />
           E-Mail</a
-        >
-        <a class="contact-link" href="#"
-          ><img
-            class="contact-img"
-            src="images/social-icons/icons8-instagram-500.png"
-            alt=""
-          />
-          Instagram</a
-        >
-        <a class="contact-link" href="#"
-          ><img
-            class="contact-img"
-            src="images/social-icons/icons8-facebook-500.png"
-            alt=""
-          />Facebook</a
         >
         <a class="contact-link" href="https://www.linkedin.com/in/victoryulasi/"
           ><img
@@ -169,21 +252,9 @@
             alt=""
           />Youtube</a
         >
-        <a class="contact-link" href="#"
-          ><img
-            class="contact-img"
-            src="images/social-icons/icons8-tiktok-500.png"
-            alt=""
-          />TikTok</a
-        >
-        <a class="contact-link" href="#"
-          ><img
-            class="contact-img"
-            src="images/social-icons/icons8-whatsapp-500.png"
-            alt=""
-          />Whatsapp</a
-        >
       </div>
     </section>
+
+    <script src="Script/app.js"></script>
   </body>
 </html>

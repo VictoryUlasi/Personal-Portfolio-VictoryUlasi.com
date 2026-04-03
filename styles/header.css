@@ -1,6 +1,5 @@
 /* ─── Desktop Nav ───────────────────────────────────────── */
 .headerBar {
-  font-family: "Story Script", sans-serif;
   position: fixed;
   top: 0;
   z-index: 400;
