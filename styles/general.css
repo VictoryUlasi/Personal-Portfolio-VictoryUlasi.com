@@ -1,7 +1,13 @@
 /* ─── Base ─────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -117,8 +123,8 @@ body {
 }
 
 .carousel-controls button {
-  width: 2.8vw;
-  height: 5.5vh;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid white;
   background: transparent;
@@ -139,7 +145,8 @@ body {
 
 /* The window */
 .carousel-outer {
-  width: 80%;
+  width: 90%;
+  padding: 1.5rem 0 1.5rem 1.5rem;
   overflow: hidden;
 }
 
@@ -155,11 +162,19 @@ body {
 .project-card {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  flex-shrink: 0;
+  width: clamp(300px, 80vw, 573px);
+  min-width: unset;
+  max-width: unset;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1.5rem;
   overflow: hidden;
-  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  transform: scale(1.01);
 }
 
 .card-img {
@@ -246,7 +261,7 @@ body {
 }
 
 .contact-link:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .contact-img {
@@ -305,6 +320,11 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  .modal {
+    width: 90vw;
+    max-height: 85vh;
+  }
 }
 
 /* Full width sidebar on small phones — show site name again */
@@ -316,4 +336,237 @@ body {
   .sideBar-title {
     visibility: visible;
   }
+
+  .modal {
+    min-width: 95vw;
+    max-height: 92vh;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* ─── Modal ─────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: relative;
+  width: 60vw;
+  max-height: 80vh;
+  background-color: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  scrollbar-width: none; /* Firefox */
+}
+
+.modal::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 10;
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 40vh;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+}
+
+.modal-tools {
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  font-weight: 200;
+  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.modal-desc,
+.modal-challenges,
+.modal-results {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 200;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.modal-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.modal-links a {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.875rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background 0.3s ease;
+}
+
+.modal-links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Modal Gallery ─────────────────────────────────────── */
+.modal-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.modal-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-thumb {
+  height: 80px;
+  width: 120px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.7;
+  border: 2px solid transparent;
+  transition:
+    opacity 0.2s ease,
+    border 0.2s ease;
+}
+
+.modal-thumb:hover {
+  opacity: 1;
+}
+
+.modal-thumb.active {
+  opacity: 1;
+  border: 2px solid white;
+}
+
+/* ─── Enlarged Image ────────────────────────────────────── */
+.modal-enlarged {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.modal-enlarged img {
+  width: 100%;
+  max-height: 40vh;
+  object-fit: contain;
+  border-radius: 1rem;
+  cursor: zoom-in;
+}
+
+/* ─── Image Overlay ─────────────────────────────────────── */
+.img-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+.img-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.overlay-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 100000;
+}
+
+.overlay-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.overlay-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.overlay-prev {
+  left: 2rem;
+}
+.overlay-next {
+  right: 2rem;
+}
+
+.img-overlay {
+  position: fixed; /* make sure this is still there */
 }
