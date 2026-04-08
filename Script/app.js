@@ -1,3 +1,7 @@
+// Auto-update copyright year
+const yearEl = document.getElementById("footer-year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 // Show the sidebar (called when hamburger menu icon is clicked)
 function showSidebar() {
   const sideBar = document.querySelector(".sideBar");
@@ -16,170 +20,132 @@ function hideSidebar() {
   document.body.style.overflowY = "visible";
 }
 
-// Carousel
-function getCardWidth() {
-  const card = document.querySelector(".project-card");
-  const track = document.querySelector(".carousel-track");
-  const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
-  return card.offsetWidth + gap;
-}
+// Carousel — drag to scroll + auto-scroll
+const outer = document.querySelector(".carousel-outer");
 
-const track = document.querySelector(".carousel-track");
-const prev = document.querySelector("#prev");
-const next = document.querySelector("#next");
-let index = 0;
+if (outer) {
+  // --- Auto-scroll (defined first so event listeners can reference them) ---
+  let autoTimer = null;
+  const SPEED = 0.4;
+  let direction = 1;
+  let scrollPos = 0;
 
-function updateCarousel() {
-  const cardWidth = getCardWidth();
-  const outer = document.querySelector(".carousel-outer");
-  const visible = Math.floor(outer.offsetWidth / cardWidth);
-  const total = track.children.length;
-  track.style.transform = `translateX(-${index * cardWidth}px)`;
-  prev.disabled = index === 0;
-  next.disabled = index >= total - visible;
-}
-
-function prevBtn() {
-  index = Math.max(0, index - 1);
-  updateCarousel();
-}
-
-function nextBtn() {
-  const cardWidth = getCardWidth();
-  const outer = document.querySelector(".carousel-outer");
-  const visible = Math.floor(outer.offsetWidth / cardWidth);
-  const total = track.children.length;
-  index = Math.min(total - visible, index + 1);
-  updateCarousel();
-}
-
-window.addEventListener("resize", updateCarousel);
-updateCarousel();
-
-//Modal
-function openModal(index) {
-  const project = projects[index];
-  const content = document.getElementById("modal-content");
-
-  content.innerHTML = `
-  <div class="modal-gallery">
-    ${project.images
-      .map(
-        (img, i) => `
-  <img src="${img}" class="modal-thumb" onclick="enlargeImage('${img}'); overlayIndex=${i};" />
-`,
-      )
-      .join("")}
-  </div>
-  <div class="modal-enlarged" id="modal-enlarged">
-    <img src="${project.images[0]}" id="enlarged-img" onclick="openImgOverlay(${index})" />
-  </div>
-    <h2 class="modal-title">${project.title}</h2>
-    <p class="modal-tools"><strong>Tools:</strong> ${project.tools}</p>
-    <p class="modal-desc">${project.description}</p>
-    <p class="modal-challenges"><strong>Challenges:</strong> ${project.challenges}</p>
-    <p class="modal-results"><strong>Results:</strong> ${project.results}</p>
-    ${project.video ? `<iframe src="${project.video}" class="modal-video" allowfullscreen></iframe>` : ""}
-    <div class="modal-links">
-      ${project.github ? `<a href="${project.github}" target="_blank">GitHub</a>` : ""}
-      ${project.live ? `<a href="${project.live}" target="_blank">Live Site</a>` : ""}
-    </div>
-  `;
-
-  document.getElementById("modal-overlay").style.display = "flex";
-  document.body.style.overflowY = "hidden";
-}
-
-function closeModal() {
-  document.getElementById("modal-overlay").style.display = "none";
-  document.body.style.overflowY = "visible";
-}
-
-function enlargeImage(src) {
-  document.getElementById("enlarged-img").src = src;
-  document.querySelectorAll(".modal-thumb").forEach((thumb) => {
-    thumb.classList.remove("active");
-    if (thumb.src.includes(src.split("/").pop())) {
-      thumb.classList.add("active");
+  function autoScrollStep() {
+    const maxScroll = outer.scrollWidth - outer.clientWidth;
+    if (maxScroll <= 0) {
+      autoTimer = requestAnimationFrame(autoScrollStep);
+      return;
     }
-  });
-}
-
-let overlayImages = [];
-let overlayIndex = 0;
-
-function openImgOverlay(projectIndex) {
-  overlayImages = projects[projectIndex].images;
-  overlayIndex = 0;
-  document.getElementById("img-overlay-img").src = overlayImages[overlayIndex];
-  document.getElementById("img-overlay").style.display = "flex";
-}
-
-function overlayPrev() {
-  overlayIndex = Math.max(0, overlayIndex - 1);
-  document.getElementById("img-overlay-img").src = overlayImages[overlayIndex];
-}
-
-function overlayNext() {
-  overlayIndex = Math.min(overlayImages.length - 1, overlayIndex + 1);
-  document.getElementById("img-overlay-img").src = overlayImages[overlayIndex];
-}
-
-function closeImgOverlay() {
-  document.getElementById("img-overlay").style.display = "none";
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById("img-overlay")) {
-    closeImgOverlay();
+    scrollPos += SPEED * direction;
+    if (scrollPos >= maxScroll) { scrollPos = maxScroll; direction = -1; }
+    else if (scrollPos <= 0) { scrollPos = 0; direction = 1; }
+    outer.scrollLeft = scrollPos;
+    autoTimer = requestAnimationFrame(autoScrollStep);
   }
-}
 
-document
-  .getElementById("modal-overlay")
-  .addEventListener("click", function (e) {
-    if (e.target === this) closeModal();
+  function startAutoScroll() {
+    scrollPos = outer.scrollLeft;
+    if (!autoTimer) autoTimer = requestAnimationFrame(autoScrollStep);
+  }
+
+  function stopAutoScroll() {
+    if (autoTimer) {
+      cancelAnimationFrame(autoTimer);
+      autoTimer = null;
+    }
+    scrollPos = outer.scrollLeft;
+  }
+
+  // --- Drag to scroll (desktop) ---
+  let isDragging = false;
+  let hasDragged = false;
+  let startX, startScrollLeft;
+
+  outer.addEventListener("dragstart", (e) => e.preventDefault());
+
+  outer.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    hasDragged = false;
+    outer.classList.add("dragging");
+    startX = e.pageX - outer.offsetLeft;
+    startScrollLeft = outer.scrollLeft;
+    stopAutoScroll();
   });
 
-//PROJECTS 4 MODAL
-//Project Class Each Object represents 1 project and they must match order in project section container
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    outer.classList.remove("dragging");
+    if (hasDragged) {
+      document.addEventListener("click", (e) => e.stopPropagation(), {
+        capture: true,
+        once: true,
+      });
+    }
+    startAutoScroll();
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - outer.offsetLeft;
+    const diff = x - startX;
+    if (Math.abs(diff) > 5) hasDragged = true;
+    outer.scrollLeft = startScrollLeft - diff;
+  });
+
+  // Pause on hover, resume on leave
+  outer.addEventListener("mouseenter", stopAutoScroll);
+  outer.addEventListener("mouseleave", () => {
+    if (!isDragging) startAutoScroll();
+  });
+
+  // Pause on touch, resume 2s after letting go
+  outer.addEventListener("touchstart", stopAutoScroll, { passive: true });
+  outer.addEventListener("touchend", () => setTimeout(startAutoScroll, 2000));
+
+  window.addEventListener("load", startAutoScroll);
+}
+
+// Projects data — each object matches the order of cards in index.html
+// project.html reads this to render the detail page
 const projects = [
   {
     title: "MAE 1351 Final Project",
     images: [
-      "images/project_Images/1351/MAE-1351.jpeg",
-      "images/project_Images/1351/Picture3.jpg",
-      "images/project_Images/1351/Picture4.jpg",
-      "images/project_Images/1351/Picture5.jpg",
-      "images/project_Images/1351/Picture1.png",
-      "images/project_Images/1351/Picture2.png",
-      "images/project_Images/1351/Picture7.png",
-      "images/project_Images/1351/Picture8.png",
-      "images/project_Images/1351/Picture9.png",
-      "images/project_Images/1351/Picture10.png",
-      "images/project_Images/1351/Picture11.png",
-      "images/project_Images/1351/Picture12.png",
-      "images/project_Images/1351/Picture13.png",
+      "images/project_Images/1351/MAE-1351.webp",
+      "images/project_Images/1351/Picture3.webp",
+      "images/project_Images/1351/Picture4.webp",
+      "images/project_Images/1351/Picture5.webp",
+      "images/project_Images/1351/Picture1.webp",
+      "images/project_Images/1351/Picture2.webp",
+      "images/project_Images/1351/Picture7.webp",
+      "images/project_Images/1351/Picture8.webp",
+      "images/project_Images/1351/Picture9.webp",
+      "images/project_Images/1351/Picture10.webp",
+      "images/project_Images/1351/Picture11.webp",
+      "images/project_Images/1351/Picture12.webp",
+      "images/project_Images/1351/Picture13.webp",
     ],
     tools: "Arduino, C++, 3D Printing, SolidWorks, SolidWorks Simulation",
     description:
       "In a team of 4, designed and 3D printed a fully automated, battery-powered ball-transfer mechanism controlled by an Arduino, capable of acquiring and delivering ping pong balls into a target cup from 6 feet away within 30 seconds. Integrated DC motors, drive wheels, and buck converters for power regulation into a self-contained system, with Arduino programming handling motor and servo control",
     challenges: "Write what was hard here.",
     results: "Write the outcome here.",
-    video: "", // youtube embed URL or leave empty
+    video: "",
     github: "",
     live: "",
   },
   {
     title: "F405 Drone Build",
     images: [
-      "images/project_Images/F405-Drone/F405-Drone.jpeg",
-      "images/project_Images/F405-Drone/IMG_0411.jpeg",
-      "images/project_Images/F405-Drone/IMG_0624.jpeg",
-      "images/project_Images/F405-Drone/IMG_0433.jpeg",
-      "images/project_Images/F405-Drone/IMG_0572.PNG",
-      "images/project_Images/F405-Drone/IMG_0626.jpeg",
-      "images/project_Images/F405-Drone/IMG_5397.jpg",
+      "images/project_Images/F405-Drone/F405-Drone.webp",
+      "images/project_Images/F405-Drone/IMG_0411.webp",
+      "images/project_Images/F405-Drone/IMG_0624.webp",
+      "images/project_Images/F405-Drone/IMG_0433.webp",
+      "images/project_Images/F405-Drone/IMG_0572.webp",
+      "images/project_Images/F405-Drone/IMG_0626.webp",
+      "images/project_Images/F405-Drone/IMG_5397.webp",
     ],
     tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
     description:
@@ -187,40 +153,38 @@ const projects = [
     challenges: "Write what was hard here.",
     results: "Write the outcome here.",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
+    youtube: "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
     github: "",
     live: "",
   },
   {
     title: "Library Management System",
     images: [
-      "images/project_Images/lib_management.png",
-      "images/project_Images/MAE-1351-cad.jpeg",
-      "images/project_Images/MAE-1351-build.jpeg",
+      "images/project_Images/lib_management.webp",
     ],
-    tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
+    tools: "C++, File I/O, OOP",
     description:
       "Developed a console-based library management system in C++ featuring a menu-driven interface for adding and removing books and users, issuing and returning books, and displaying inventory. Implemented object-oriented design across three classes — Book, User, and Library — with file I/O for persistent data storage across sessions.",
     challenges: "Write what was hard here.",
     results: "Write the outcome here.",
-    video: "https://www.youtube.com/embed/YOUR_VIDEO_ID",
-    github: "",
+    video: "",
+    github: "https://github.com/VictoryUlasi/Library-Management-System",
     live: "",
   },
   {
-    title: "Simple Vector Calculator",
+    title: "Vector Calculator + GUI",
     images: [
-      "images/project_Images/vectory_calculator.png",
-      "images/project_Images/MAE-1351-cad.jpeg",
-      "images/project_Images/MAE-1351-build.jpeg",
+      "images/project_Images/vectory_calculator.webp",
     ],
-    tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
+    tools: "C++, Qt, Gnuplot, OOP",
     description:
       "Developed a console-based vector calculator in C++ supporting both 2D and 3D vectors, with operations including addition, subtraction, scalar multiplication, dot product, cross product, magnitude, and angle between vectors. Implemented custom Vector2D and Vector3D classes with overloaded operators, integrated Gnuplot for real-time vector visualization, and extended the application with a Qt-based GUI transitioning from a console interface to a fully graphical desktop application.",
     challenges: "Write what was hard here.",
     results: "Write the outcome here.",
-    video: "https://www.youtube.com/embed/YOUR_VIDEO_ID",
-    github: "",
+    video: "",
+    youtube: "https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn",
+    github: "https://github.com/VictoryUlasi/Vector-Calculator-GUI-",
     live: "",
   },
-  // add projects
+  // add more projects here
 ];
