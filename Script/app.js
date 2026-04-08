@@ -162,11 +162,13 @@ const projects = [
     images: [
       "images/project_Images/lib_management.webp",
     ],
-    tools: "C++, File I/O, OOP",
+    tools: "C++, File I/O, OOP, Windows API",
     description:
-      "Developed a console-based library management system in C++ featuring a menu-driven interface for adding and removing books and users, issuing and returning books, and displaying inventory. Implemented object-oriented design across three classes — Book, User, and Library — with file I/O for persistent data storage across sessions.",
-    challenges: "Write what was hard here.",
-    results: "Write the outcome here.",
+      "A Windows console application that manages a library catalog of books and users. Supports adding and removing books and users, issuing and returning books, and displaying the full inventory with checkout status. All data persists between sessions using semicolon-delimited flat text files (libBook.txt, libUser.txt), loaded into memory at startup across three classes — Book, User, and Library — and written back on every change.",
+    challenges:
+      "The biggest challenge was implementing reliable file persistence without a database. Since there is no DELETE in a flat file, removing a record requires rewriting the entire file from scratch. I also had to force the OS to flush write buffers mid-session using a refresh() function that closes and reopens the output stream after each add operation, rather than only writing on program exit. Input validation was handled manually with character-by-character digit checks and cin recovery loops since there was no framework to lean on.",
+    results:
+      "A fully working library system with clean three-class OOP design and persistent storage across sessions. The project ships with 20 sample books and 20 sample users pre-loaded. It demonstrated practical tradeoffs in flat-file architecture versus a proper database, which is listed as the next step in the project roadmap alongside a planned GUI.",
     video: "",
     github: "https://github.com/VictoryUlasi/Library-Management-System",
     live: "",
@@ -176,11 +178,13 @@ const projects = [
     images: [
       "images/project_Images/vectory_calculator.webp",
     ],
-    tools: "C++, Qt, Gnuplot, OOP",
+    tools: "C++17, Qt 6, Gnuplot, Boost, Visual Studio, CMake",
     description:
-      "Developed a console-based vector calculator in C++ supporting both 2D and 3D vectors, with operations including addition, subtraction, scalar multiplication, dot product, cross product, magnitude, and angle between vectors. Implemented custom Vector2D and Vector3D classes with overloaded operators, integrated Gnuplot for real-time vector visualization, and extended the application with a Qt-based GUI transitioning from a console interface to a fully graphical desktop application.",
-    challenges: "Write what was hard here.",
-    results: "Write the outcome here.",
+      "Built in two stages: first a console-based REPL in Visual Studio using custom Vector2D and Vector3D classes with operator overloads, supporting addition, subtraction, scalar multiplication, dot product, cross product, magnitude, angle between vectors, and real-time Gnuplot visualization of vector arrows. Then rebuilt the entire interface as a Qt 6 desktop GUI with form fields, live result display, and progressive UI disclosure — checkboxes dynamically unlock 3D fields, scalar mode, and magnitude mode to prevent invalid operation combinations.",
+    challenges:
+      "The main technical challenge in the GUI version was handling both 2D and 3D vectors through a single unified interface without duplicating every operation handler. This was solved using C++17 std::variant and std::visit with if constexpr type checks at compile time, so dimension mismatches are caught without runtime branching or inheritance. In the console version, integrating Gnuplot required piping commands through the gnuplot-iostream header-only library and normalizing both vectors to unit length before plotting so the visualization always fits within fixed axes.",
+    results:
+      "Two fully functional applications sharing the same math kernel (Vector2D/Vector3D classes), demonstrating how a clean separation between math logic and UI layer allows the same core to power both a console tool and a graphical desktop app. The GUI version enforces valid application state at all times through widget enable/disable logic, and the console version produces live 2D and 3D vector plots via Gnuplot.",
     video: "",
     youtube: "https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn",
     github: "https://github.com/VictoryUlasi/Vector-Calculator-GUI-",
