@@ -31,8 +31,20 @@
         <li><a href="#">Victory Ulasi</a></li>
         <li class="hideonmobile"><a href="#about-sect">About</a></li>
         <li class="hideonmobile"><a href="#project-sect">Projects</a></li>
-        <li class="hideonmobile">
-          <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
+        <li class="hideonmobile nav-dropdown">
+          <a>Resume</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="files/Victory Ulasi Resume.pdf" target="_blank"
+                >Resume</a
+              >
+            </li>
+            <li>
+              <a href="files/Victory Ulasi Academic Resume.pdf" target="_blank"
+                >Academic Resume</a
+              >
+            </li>
+          </ul>
         </li>
         <li class="hideonmobile"><a href="#contact-sect">Contact</a></li>
         <!-- Hamburger icon — hidden on desktop, shown on mobile -->
@@ -62,6 +74,14 @@
             >Resume</a
           >
         </li>
+        <li>
+          <a
+            onclick="hideSidebar()"
+            href="files/Victory Ulasi Academic Resume.pdf"
+            target="_blank"
+            >Academic Resume</a
+          >
+        </li>
         <li><a onclick="hideSidebar()" href="#contact-sect">Contact</a></li>
       </ul>
     </nav>
@@ -79,7 +99,7 @@
       <div class="img-div">
         <img
           class="about-me-img"
-          src="images/aboutme_image.jpg"
+          src="images/aboutme_image.webp"
           alt="Picture of Victory Ulasi"
         />
       </div>
@@ -99,22 +119,17 @@
     <!-- ─── Section 3: Projects ─────────────────────────────── -->
     <section id="project-sect" class="section-3">
       <div class="projects-header">
-        <h2 class="sectionTitle">Projects: *WIP*</h2>
-        <div class="carousel-controls">
-          <button onclick="prevBtn()" id="prev">
-            <span class="material-symbols-outlined"> chevron_left </span>
-          </button>
-          <button onclick="nextBtn()" id="next">
-            <span class="material-symbols-outlined"> chevron_right </span>
-          </button>
-        </div>
+        <h2 class="sectionTitle">Projects</h2>
       </div>
 
       <div class="carousel-outer">
         <div class="carousel-track">
-          <div class="project-card" onclick="openModal(0)">
+          <div
+            class="project-card"
+            onclick="window.location.href = 'project.html?id=0'"
+          >
             <img
-              src="images/project_Images/1351/MAE-1351.jpeg"
+              src="images/project_Images/1351/MAE-1351.webp"
               alt="MAE 1351 Final Project"
               class="card-img"
             />
@@ -136,9 +151,12 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="openModal(1)">
+          <div
+            class="project-card"
+            onclick="window.location.href = 'project.html?id=1'"
+          >
             <img
-              src="images/project_Images/F405-Drone/F405-Drone.jpeg"
+              src="images/project_Images/F405-Drone/F405-Drone.webp"
               alt="F405 Drone Build"
               class="card-img"
             />
@@ -161,9 +179,12 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="openModal(2)">
+          <div
+            class="project-card"
+            onclick="window.location.href = 'project.html?id=2'"
+          >
             <img
-              src="images/project_Images/lib_management.png"
+              src="images/project_Images/lib_management.webp"
               alt="Library Management System"
               class="card-img"
             />
@@ -187,9 +208,12 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="openModal(3)">
+          <div
+            class="project-card"
+            onclick="window.location.href = 'project.html?id=3'"
+          >
             <img
-              src="images/project_Images/vectory_calculator.png"
+              src="images/project_Images/vectory_calculator.webp"
               alt="Project 3"
               class="card-img"
             />
@@ -232,7 +256,7 @@
         <a class="contact-link" href="mailto:victoryulasi@icloud.com"
           ><img
             class="contact-img"
-            src="images/social-icons/mail_1324120.png"
+            src="images/social-icons/mail_1324120.webp"
             alt=""
           />
           E-Mail</a
@@ -240,62 +264,74 @@
         <a class="contact-link" href="https://www.linkedin.com/in/victoryulasi/"
           ><img
             class="contact-img"
-            src="images/social-icons/icons8-linkedin-500.png"
+            src="images/social-icons/icons8-linkedin-500.webp"
             alt=""
           />LinkedIn</a
         >
         <a class="contact-link" href="https://github.com/VictoryUlasi"
           ><img
             class="contact-img"
-            src="images/social-icons/icons8-github-500.png"
+            src="images/social-icons/icons8-github-500.webp"
             alt=""
           />Github</a
         >
         <a class="contact-link" href="https://www.youtube.com/@VictoryUUlasi"
           ><img
             class="contact-img"
-            src="images/social-icons/icons8-youtube-500.png"
+            src="images/social-icons/icons8-youtube-500.webp"
             alt=""
           />Youtube</a
         >
       </div>
     </section>
 
-    <div class="modal-overlay" id="modal-overlay">
-      <div class="modal">
-        <button class="modal-close" onclick="closeModal()">
-          <span class="material-symbols-outlined">close</span>
-        </button>
-        <div class="modal-content" id="modal-content">
-          <!-- filled dynamically by JS -->
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="footer-name">Victory Ulasi</span>
+            <span class="footer-tagline"
+              >Aerospace Engineering Student &mdash; UT Arlington</span
+            >
+          </div>
+          <nav class="footer-nav">
+            <a href="#about-sect">About</a>
+            <a href="#project-sect">Projects</a>
+            <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
+            <a href="#contact-sect">Contact</a>
+          </nav>
+          <div class="footer-social">
+            <a href="mailto:victoryulasi@icloud.com" aria-label="Email">Email: victoryulasi@icloud.com</a>
+            <a
+              href="https://www.linkedin.com/in/victoryulasi/"
+              target="_blank"
+              aria-label="LinkedIn"
+              >LinkedIn</a
+            >
+            <a
+              href="https://github.com/VictoryUlasi"
+              target="_blank"
+              aria-label="GitHub"
+              >GitHub</a
+            >
+            <a
+              href="https://www.youtube.com/@VictoryUUlasi"
+              target="_blank"
+              aria-label="YouTube"
+              >YouTube</a
+            >
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; <span id="footer-year"></span> Victory Ulasi. All rights
+            reserved.</span
+          >
+          <span>Designed &amp; built by Victory Ulasi</span>
         </div>
       </div>
-    </div>
-
-    <div class="img-overlay" id="img-overlay" onclick="closeImgOverlay()">
-      <button class="overlay-close" onclick="closeImgOverlay()">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-      <button
-        class="overlay-btn overlay-prev"
-        onclick="
-          overlayPrev();
-          event.stopPropagation();
-        "
-      >
-        <span class="material-symbols-outlined">chevron_left</span>
-      </button>
-      <img id="img-overlay-img" src="" alt="" />
-      <button
-        class="overlay-btn overlay-next"
-        onclick="
-          overlayNext();
-          event.stopPropagation();
-        "
-      >
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
+    </footer>
 
     <script src="Script/app.js"></script>
   </body>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Victory Ulasi</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/project.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Permanent+Marker&family=Roboto:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Icons (alphabetical) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,chevron_left,chevron_right,close,menu"
+    />
+  </head>
+  <body>
+    <!-- Desktop Nav -->
+    <nav class="headerBar">
+      <ul>
+        <li><a href="index.html">Victory Ulasi</a></li>
+        <li class="hideonmobile"><a href="index.html#about-sect">About</a></li>
+        <li class="hideonmobile">
+          <a href="index.html#project-sect">Projects</a>
+        </li>
+        <li class="hideonmobile nav-dropdown">
+          <a>Resume</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="files/Victory Ulasi Resume.pdf" target="_blank"
+                >Resume</a
+              >
+            </li>
+            <li>
+              <a href="files/Victory Ulasi Academic Resume.pdf" target="_blank"
+                >Academic Resume</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="hideonmobile">
+          <a href="index.html#contact-sect">Contact</a>
+        </li>
+        <li onclick="showSidebar()" class="menu-icon">
+          <a href="#"><span class="material-symbols-outlined">menu</span></a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <nav class="sideBar">
+      <ul>
+        <li>
+          <a class="sideBar-title" href="index.html">Victory Ulasi</a>
+          <div onclick="hideSidebar()" class="close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </div>
+        </li>
+        <li>
+          <a onclick="hideSidebar()" href="index.html#about-sect">About Me</a>
+        </li>
+        <li>
+          <a onclick="hideSidebar()" href="index.html#project-sect">Projects</a>
+        </li>
+        <li>
+          <a
+            onclick="hideSidebar()"
+            href="files/Victory Ulasi Resume.pdf"
+            target="_blank"
+            >Resume</a
+          >
+        </li>
+        <li>
+          <a
+            onclick="hideSidebar()"
+            href="files/Victory Ulasi Academic Resume.pdf"
+            target="_blank"
+            >Academic Resume</a
+          >
+        </li>
+        <li>
+          <a onclick="hideSidebar()" href="index.html#contact-sect">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Title Section -->
+    <section class="proj-title-sect">
+      <a href="index.html#project-sect" class="back-btn">
+        <span class="material-symbols-outlined">arrow_back</span> Back
+      </a>
+      <h1 class="sectionTitle" id="project-title"></h1>
+    </section>
+
+    <!-- Content Section -->
+    <section class="proj-content-sect">
+      <div class="project-main">
+        <!-- Links -->
+        <div id="project-links"></div>
+
+        <!-- Gallery -->
+        <div class="project-gallery-section">
+          <div class="project-gallery" id="project-gallery"></div>
+          <div class="project-enlarged">
+            <img id="enlarged-img" src="" alt="" onclick="openImgOverlay()" />
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="project-info">
+          <p class="project-tools" id="project-tools"></p>
+          <p class="project-desc" id="project-desc"></p>
+          <p class="project-challenges" id="project-challenges"></p>
+          <p class="project-results" id="project-results"></p>
+        </div>
+
+        <!-- Media + Links -->
+        <div class="project-media" id="project-media"></div>
+      </div>
+    </section>
+
+    <!-- Fullscreen Image Overlay -->
+    <div class="img-overlay" id="img-overlay" onclick="closeImgOverlay()">
+      <button
+        class="overlay-close"
+        onclick="
+          closeImgOverlay();
+          event.stopPropagation();
+        "
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <button
+        class="overlay-btn overlay-prev"
+        onclick="
+          overlayPrev();
+          event.stopPropagation();
+        "
+      >
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <img id="img-overlay-img" src="" alt="" />
+      <button
+        class="overlay-btn overlay-next"
+        onclick="
+          overlayNext();
+          event.stopPropagation();
+        "
+      >
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+
+    <script src="Script/app.js"></script>
+    <script src="Script/project.js"></script>
+  </body>
+</html>

@@ -11,7 +11,7 @@
   backdrop-filter: blur(5px);
 }
 
-.headerBar ul {
+.headerBar > ul {
   width: 100%;
   height: 10vh;
   margin: 0;
@@ -73,6 +73,63 @@
 .headerBar a:hover::after {
   width: 100%;
   left: 0;
+}
+
+/* ─── Resume Dropdown ───────────────────────────────────── */
+.nav-dropdown {
+  position: relative;
+}
+
+/* override the blanket `position: relative` from .headerBar * */
+.dropdown-menu {
+  display: none;
+  position: absolute !important;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  padding: 0.4rem 0;
+  list-style: none;
+  margin: 0;
+  min-width: 180px;
+  z-index: 500;
+  white-space: nowrap;
+}
+
+/* suppress ::after on non-link elements inside dropdown */
+.dropdown-menu::after,
+.dropdown-menu li::after {
+  display: none !important;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 1rem;
+  height: auto;
+  text-align: center;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
 }
 
 /* ─── Mobile Breakpoint ─────────────────────────────────── */
