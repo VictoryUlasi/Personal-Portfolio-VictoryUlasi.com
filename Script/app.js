@@ -130,8 +130,10 @@ const projects = [
     tools: "Arduino, C++, 3D Printing, SolidWorks, SolidWorks Simulation",
     description:
       "In a team of 4, designed and 3D printed a fully automated, battery-powered ball-transfer mechanism controlled by an Arduino, capable of acquiring and delivering ping pong balls into a target cup from 6 feet away within 30 seconds. Integrated DC motors, drive wheels, and buck converters for power regulation into a self-contained system, with Arduino programming handling motor and servo control",
-    challenges: "Write what was hard here.",
-    results: "Write the outcome here.",
+    challenges:
+      "The biggest challenge was meeting all competition constraints simultaneously — the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while clearing a 1-foot horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
+    results:
+      "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated two 3D-printed structural components designed in SolidWorks, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project placed in class competition and served as a practical introduction to the full mechanical-electrical-software integration cycle.",
     video: "",
     github: "",
     live: "",
