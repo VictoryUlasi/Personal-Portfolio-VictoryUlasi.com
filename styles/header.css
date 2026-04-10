@@ -139,4 +139,13 @@
   .menu-icon {
     display: flex;
   }
+
+  /* Fix header on mobile/tablet so hamburger stays accessible while scrolling */
+  .headerBar {
+    position: fixed;
+    top: 0;
+    z-index: 400;
+    background-color: rgba(0, 0, 0, 0.055);
+    backdrop-filter: blur(10px);
+  }
 }
