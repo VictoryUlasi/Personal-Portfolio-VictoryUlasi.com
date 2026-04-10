@@ -1,3 +1,51 @@
+// About Me — stacked card auto-swipe every 1.5s
+const photoCards = document.querySelectorAll(".photo-card");
+if (photoCards.length) {
+  let active = 0;
+  const total = photoCards.length;
+
+  function updatePositions() {
+    photoCards.forEach((card, i) => {
+      card.dataset.pos = (i - active + total) % total;
+    });
+  }
+
+  let swipeRight = true;
+
+  function swipeNext() {
+    const dir = swipeRight ? "swipe-right" : "swipe-left";
+    photoCards[active].classList.add(dir);
+    setTimeout(() => {
+      photoCards[active].classList.remove(dir);
+      active = (active + 1) % total;
+      updatePositions();
+    }, 450);
+    swipeRight = !swipeRight;
+  }
+
+  updatePositions();
+  setInterval(swipeNext, 3500);
+}
+
+// Scroll reveal — trigger animations when sections enter the viewport
+const revealEls = document.querySelectorAll(
+  ".reveal, .reveal-left, .reveal-right",
+);
+if (revealEls.length) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+  revealEls.forEach((el) => observer.observe(el));
+}
+
 // Auto-update copyright year
 const yearEl = document.getElementById("footer-year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -26,7 +74,7 @@ const outer = document.querySelector(".carousel-outer");
 if (outer) {
   // --- Auto-scroll (defined first so event listeners can reference them) ---
   let autoTimer = null;
-  const SPEED = 0.4;
+  const SPEED = 0.28;
   let direction = 1;
   let scrollPos = 0;
 
@@ -109,7 +157,7 @@ if (outer) {
   outer.addEventListener("touchstart", stopAutoScroll, { passive: true });
   outer.addEventListener("touchend", () => setTimeout(startAutoScroll, 2000));
 
-  window.addEventListener("load", startAutoScroll);
+  window.addEventListener("load", () => setTimeout(startAutoScroll, 2500));
 }
 
 // Projects data — each object matches the order of cards in index.html
