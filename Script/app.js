@@ -138,8 +138,8 @@ const projects = [
     challenges:
       "The biggest challenge was meeting all competition constraints simultaneously — the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while starting atleast 1-foot away from the ball and cup, simulating a horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning and a fried arduino MEGA. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
     results:
-      "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated multiple 3D-printed structural components designed in SolidWorks and simulated using SolidWorks Simulation, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project placed in class competition and served as a practical introduction to the full mechanical-electrical-software integration cycle.",
-    video: "",
+      "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated multiple 3D-printed structural components designed in SolidWorks and simulated using SolidWorks Simulation, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project earned a 3 out of 2 for transferring more balls than were required, and it served as a practical introduction to the full mechanical-electrical-software integration cycle.",
+    video: "https://www.youtube.com/embed/WOMEKv_0r2U?si=bsQVDOBgL1JcOevD",
     github: "",
     live: "",
   },
@@ -157,8 +157,8 @@ const projects = [
     tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
     description:
       "Over winter 2025 break, assembled a fully functional drone from components including ESCs, flight controller, motors, and GPS, performing all wiring and soldering. 3D printed custom housings for the flight controller and GPS module, and configured flight parameters and PID tuning in Betaflight",
-    challenges: "Write what was hard here.",
-    results: "Write the outcome here.",
+    challenges: "",
+    results: "",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
     youtube:
       "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
