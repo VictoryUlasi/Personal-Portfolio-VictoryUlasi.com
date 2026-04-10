@@ -43,17 +43,70 @@ body {
 
 /* ─── Section 1: Hero ───────────────────────────────────── */
 .section-1 {
+  height: calc(100vh - 5vh); /* slightly taller hero */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem 8rem;
+  box-sizing: border-box;
 }
 
-.mainHeader {
+.hero-name {
+  margin: 0;
+  width: 100%;
+  font-size: 13vw;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.8;
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-taglines {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  padding-left: 1vw;
+}
+
+.hero-taglines span {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.hero-taglines span:nth-child(1) { animation-delay: 0.3s; }
+.hero-taglines span:nth-child(2) { animation-delay: 0.55s; }
+.hero-taglines span:nth-child(3) { animation-delay: 0.8s; }
+
+@media (max-width: 800px) {
+  .section-1 {
+    height: 100vh;
+    padding-top: calc(10vh + 1.5rem); /* push content below fixed header */
+  }
+
+  .hero-name {
+    font-size: 21vw; /* large enough that VICTORY fills the line, ULASI wraps */
+    text-align: left;
+  }
 }
 
 /* ─── Section 2: About Me ───────────────────────────────── */
@@ -272,6 +325,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 3rem;
 }
 
@@ -282,39 +336,48 @@ body {
   align-items: center;
 }
 
-.contact-img-row {
+.contact-list {
   display: flex;
-  flex-direction: row;
-  max-width: 75vw;
-  margin: 0 auto;
-  gap: 2rem;
-}
-
-.contact-link {
-  display: flex;
-  min-width: 0;
-  flex: 1;
   flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  font-size: clamp(0.6rem, 2vw, 15pt);
-  color: white;
-  gap: 1rem;
+  gap: 1.25rem;
+  width: 100%;
 }
 
-.contact-link {
+.contact-item {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  width: 100%;
   transition: transform 0.3s ease;
 }
 
-.contact-link:hover {
-  transform: scale(1.1);
+.contact-item:hover {
+  transform: scale(1.05);
+  transition-delay: 0s;
 }
 
-.contact-img {
-  max-height: 25vh;
-  width: 75vw;
+.contact-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: clamp(320px, 55vw, 720px);
+  margin: 0 auto;
+}
+
+.contact-icon {
+  width: 4rem;
+  height: 4rem;
   object-fit: contain;
-  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.contact-item span {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 200;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* ─── Typography ────────────────────────────────────────── */
@@ -363,10 +426,6 @@ body {
     min-width: 90vw;
   }
 
-  .contact-img-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
 }
 
 /* Full width sidebar on small phones — show site name again */
@@ -408,8 +467,8 @@ body {
 }
 
 /* Re-declare hover transforms after reveal rules so they aren't overridden */
-.contact-link:hover {
-  transform: scale(1.1);
+.contact-item:hover {
+  transform: scale(1.05);
   transition-delay: 0s;
 }
 
@@ -423,7 +482,7 @@ body {
 
 /* ─── Footer ────────────────────────────────────────────── */
 .site-footer {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(5px);
   padding: 3rem 2rem 2rem;
 }

@@ -32,6 +32,7 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-weight: 300;
   color: white;
 }
 
@@ -44,12 +45,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: 8vh;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 1vw;
-  padding-right: 3.5vw;
-  font-weight: 800;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-weight: 300;
+  letter-spacing: 0;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
 }
 

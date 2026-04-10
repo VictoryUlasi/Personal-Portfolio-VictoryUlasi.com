@@ -4,16 +4,18 @@
   width: 100%;
   box-sizing: border-box;
   font-size: clamp(0.75rem, 1.5vw, 1rem);
-  font-weight: 800;
-  background-color: rgba(0, 0, 0, 0.6);
+  font-weight: 300;
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(5px);
+  padding-top: 0.75rem;
 }
 
 .headerBar > ul {
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   margin: 0;
-  padding: 0;
+  padding: 0 2rem;
+  box-sizing: border-box;
   list-style: none;
   display: flex;
   justify-content: flex-end; /* push links to the right */
@@ -40,8 +42,10 @@
 /* Site name — pushed to the left with auto margin */
 .headerBar li:first-child {
   margin-right: auto;
-  font-weight: 800;
+  font-weight: 300;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 /* Hamburger icon — hidden on desktop */
@@ -73,62 +77,6 @@
   left: 0;
 }
 
-/* ─── Resume Dropdown ───────────────────────────────────── */
-.nav-dropdown {
-  position: relative;
-}
-
-/* override the blanket `position: relative` from .headerBar * */
-.dropdown-menu {
-  display: none;
-  position: absolute !important;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  padding: 0.4rem 0;
-  list-style: none;
-  margin: 0;
-  min-width: 180px;
-  z-index: 500;
-  white-space: nowrap;
-}
-
-/* suppress ::after on non-link elements inside dropdown */
-.dropdown-menu::after,
-.dropdown-menu li::after {
-  display: none !important;
-}
-
-.nav-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li {
-  width: 100%;
-}
-
-.dropdown-menu li a {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.6rem 1rem;
-  height: auto;
-  text-align: center;
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.dropdown-menu li a:hover {
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  transform: scale(1.05);
-}
 
 /* ─── Mobile Breakpoint ─────────────────────────────────── */
 @media (max-width: 800px) {
@@ -145,7 +93,7 @@
     position: fixed;
     top: 0;
     z-index: 400;
-    background-color: rgba(0, 0, 0, 0.055);
+    background-color: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(10px);
   }
 }
