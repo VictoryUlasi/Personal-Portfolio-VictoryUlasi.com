@@ -37,8 +37,13 @@ if (outer) {
       return;
     }
     scrollPos += SPEED * direction;
-    if (scrollPos >= maxScroll) { scrollPos = maxScroll; direction = -1; }
-    else if (scrollPos <= 0) { scrollPos = 0; direction = 1; }
+    if (scrollPos >= maxScroll) {
+      scrollPos = maxScroll;
+      direction = -1;
+    } else if (scrollPos <= 0) {
+      scrollPos = 0;
+      direction = 1;
+    }
     outer.scrollLeft = scrollPos;
     autoTimer = requestAnimationFrame(autoScrollStep);
   }
@@ -131,9 +136,9 @@ const projects = [
     description:
       "In a team of 4, designed and 3D printed a fully automated, battery-powered ball-transfer mechanism controlled by an Arduino, capable of acquiring and delivering ping pong balls into a target cup from 6 feet away within 30 seconds. Integrated DC motors, drive wheels, and buck converters for power regulation into a self-contained system, with Arduino programming handling motor and servo control",
     challenges:
-      "The biggest challenge was meeting all competition constraints simultaneously — the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while clearing a 1-foot horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
+      "The biggest challenge was meeting all competition constraints simultaneously — the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while starting atleast 1-foot away from the ball and cup, simulating a horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning and a fried arduino MEGA. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
     results:
-      "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated two 3D-printed structural components designed in SolidWorks, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project placed in class competition and served as a practical introduction to the full mechanical-electrical-software integration cycle.",
+      "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated multiple 3D-printed structural components designed in SolidWorks and simulated using SolidWorks Simulation, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project placed in class competition and served as a practical introduction to the full mechanical-electrical-software integration cycle.",
     video: "",
     github: "",
     live: "",
@@ -155,15 +160,14 @@ const projects = [
     challenges: "Write what was hard here.",
     results: "Write the outcome here.",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
-    youtube: "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
+    youtube:
+      "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
     github: "",
     live: "",
   },
   {
     title: "Library Management System",
-    images: [
-      "images/project_Images/lib_management.webp",
-    ],
+    images: ["images/project_Images/lib_management.webp"],
     tools: "C++, File I/O, OOP, Windows API",
     description:
       "A Windows console application that manages a library catalog of books and users. Supports adding and removing books and users, issuing and returning books, and displaying the full inventory with checkout status. All data persists between sessions using semicolon-delimited flat text files (libBook.txt, libUser.txt), loaded into memory at startup across three classes — Book, User, and Library — and written back on every change.",
@@ -177,9 +181,7 @@ const projects = [
   },
   {
     title: "Vector Calculator + GUI",
-    images: [
-      "images/project_Images/vectory_calculator.webp",
-    ],
+    images: ["images/project_Images/vectory_calculator.webp"],
     tools: "C++17, Qt 6, Gnuplot, Boost, Visual Studio, CMake",
     description:
       "Built in two stages: first a console-based REPL in Visual Studio using custom Vector2D and Vector3D classes with operator overloads, supporting addition, subtraction, scalar multiplication, dot product, cross product, magnitude, angle between vectors, and real-time Gnuplot visualization of vector arrows. Then rebuilt the entire interface as a Qt 6 desktop GUI with form fields, live result display, and progressive UI disclosure — checkboxes dynamically unlock 3D fields, scalar mode, and magnitude mode to prevent invalid operation combinations.",
@@ -188,7 +190,8 @@ const projects = [
     results:
       "Two fully functional applications sharing the same math kernel (Vector2D/Vector3D classes), demonstrating how a clean separation between math logic and UI layer allows the same core to power both a console tool and a graphical desktop app. The GUI version enforces valid application state at all times through widget enable/disable logic, and the console version produces live 2D and 3D vector plots via Gnuplot.",
     video: "",
-    youtube: "https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn",
+    youtube:
+      "https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn",
     github: "https://github.com/VictoryUlasi/Vector-Calculator-GUI-",
     live: "",
   },
