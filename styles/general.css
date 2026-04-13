@@ -106,6 +106,7 @@ body {
   .hero-name {
     font-size: 21vw; /* large enough that VICTORY fills the line, ULASI wraps */
     text-align: left;
+    line-height: 1;
   }
 }
 
