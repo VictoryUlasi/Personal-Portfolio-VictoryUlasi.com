@@ -203,10 +203,9 @@ const projects = [
       "images/project_Images/F405-Drone/IMG_5397.webp",
     ],
     tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
-    description:
-      "Over winter 2025 break, assembled a fully functional drone from components including ESCs, flight controller, motors, and GPS, performing all wiring and soldering. 3D printed custom housings for the flight controller and GPS module, and configured flight parameters and PID tuning in Betaflight",
-    challenges: "",
-    results: "",
+    description: "TODO :(",
+    challenges: "TODO :)",
+    results: "TODO :/",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
     youtube:
       "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
