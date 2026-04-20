@@ -244,3 +244,44 @@ const projects = [
   },
   // add more projects here
 ];
+
+// Contact form — Formspree AJAX submission
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("form-submit-btn");
+    const status = document.getElementById("form-status");
+
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    status.textContent = "";
+    status.className = "form-status";
+
+    try {
+      const res = await fetch("https://formspree.io/f/xdaydgwn", {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        status.textContent = "Message sent! I'll get back to you soon.";
+        status.className = "form-status success";
+        contactForm.reset();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        status.textContent =
+          data?.errors?.[0]?.message ||
+          "Something went wrong. Please try again.";
+        status.className = "form-status error";
+      }
+    } catch {
+      status.textContent = "Network error. Please try again.";
+      status.className = "form-status error";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Send Message";
+    }
+  });
+}

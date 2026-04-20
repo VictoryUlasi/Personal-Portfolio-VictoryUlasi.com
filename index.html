@@ -243,83 +243,87 @@
     <section id="contact-sect" class="section-4">
       <div class="contact-header reveal">
         <h2 class="sectionTitle">Get in Touch</h2>
-        <p class="sectionFilling">Feel free to reach out anytime...</p>
+        <p class="sectionFilling">Have a question or want to work together?</p>
       </div>
-      <div class="contact-list">
-        <a
-          class="contact-item reveal"
-          style="transition-delay: 0.05s"
-          href="mailto:victoryulasi@icloud.com"
+
+      <div class="contact-body">
+        <!-- Contact Form -->
+        <form
+          id="contact-form"
+          class="contact-form reveal"
+          style="transition-delay: 0.1s"
         >
-          <div class="contact-inner">
-            <img
-              class="contact-icon"
-              src="images/social-icons/mail_1324120.webp"
-              alt=""
-            />
-            <span>victoryulasi@icloud.com</span>
-          </div>
-        </a>
-        <a
-          class="contact-item reveal"
-          style="transition-delay: 0.15s"
-          href="https://www.instagram.com/uuvictory/"
-          target="_blank"
-        >
-          <div class="contact-inner">
-            <img
-              class="contact-icon"
-              src="images/social-icons/icons8-instagram-500.webp"
-              alt=""
-            />
-            <span>Instagram</span>
-          </div>
-        </a>
-        <a
-          class="contact-item reveal"
-          style="transition-delay: 0.25s"
-          href="https://www.linkedin.com/in/victoryulasi/"
-          target="_blank"
-        >
-          <div class="contact-inner">
-            <img
-              class="contact-icon"
-              src="images/social-icons/icons8-linkedin-500.webp"
-              alt=""
-            />
-            <span>LinkedIn</span>
-          </div>
-        </a>
-        <a
-          class="contact-item reveal"
-          style="transition-delay: 0.35s"
-          href="https://github.com/VictoryUlasi"
-          target="_blank"
-        >
-          <div class="contact-inner">
-            <img
-              class="contact-icon"
-              src="images/social-icons/icons8-github-500.webp"
-              alt=""
-            />
-            <span>GitHub</span>
-          </div>
-        </a>
-        <a
-          class="contact-item reveal"
-          style="transition-delay: 0.45s"
-          href="https://www.youtube.com/@VictoryUUlasi"
-          target="_blank"
-        >
-          <div class="contact-inner">
-            <img
-              class="contact-icon"
-              src="images/social-icons/icons8-youtube-500.webp"
-              alt=""
-            />
-            <span>YouTube</span>
-          </div>
-        </a>
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows="5"
+            required
+          ></textarea>
+          <div class="form-status" id="form-status"></div>
+          <button type="submit" id="form-submit-btn">Send Message</button>
+        </form>
+
+        <!-- Social Links -->
+        <div class="contact-socials reveal" style="transition-delay: 0.2s">
+          <a
+            class="contact-item"
+            href="https://www.instagram.com/uuvictory/"
+            target="_blank"
+          >
+            <div class="contact-inner">
+              <img
+                class="contact-icon"
+                src="images/social-icons/icons8-instagram-500.webp"
+                alt=""
+              />
+              <span>Instagram</span>
+            </div>
+          </a>
+          <a
+            class="contact-item"
+            href="https://www.linkedin.com/in/victoryulasi/"
+            target="_blank"
+          >
+            <div class="contact-inner">
+              <img
+                class="contact-icon"
+                src="images/social-icons/icons8-linkedin-500.webp"
+                alt=""
+              />
+              <span>LinkedIn</span>
+            </div>
+          </a>
+          <a
+            class="contact-item"
+            href="https://github.com/VictoryUlasi"
+            target="_blank"
+          >
+            <div class="contact-inner">
+              <img
+                class="contact-icon"
+                src="images/social-icons/icons8-github-500.webp"
+                alt=""
+              />
+              <span>GitHub</span>
+            </div>
+          </a>
+          <a
+            class="contact-item"
+            href="https://www.youtube.com/@VictoryUUlasi"
+            target="_blank"
+          >
+            <div class="contact-inner">
+              <img
+                class="contact-icon"
+                src="images/social-icons/icons8-youtube-500.webp"
+                alt=""
+              />
+              <span>YouTube</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -334,14 +338,19 @@
             >
           </div>
           <nav class="footer-nav">
+            <span class="footer-col-label">Site Links</span>
             <a href="#about-sect">About</a>
             <a href="#project-sect">Projects</a>
             <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
             <a href="#contact-sect">Contact</a>
           </nav>
           <div class="footer-social">
-            <a href="mailto:victoryulasi@icloud.com" aria-label="Email"
-              >Email: victoryulasi@icloud.com</a
+            <span class="footer-col-label">Socials</span>
+            <a
+              href="https://www.instagram.com/uuvictory/"
+              target="_blank"
+              aria-label="Instagram"
+              >Instagram</a
             >
             <a
               href="https://www.linkedin.com/in/victoryulasi/"
