@@ -202,10 +202,13 @@ const projects = [
       "images/project_Images/F405-Drone/IMG_0626.webp",
       "images/project_Images/F405-Drone/IMG_5397.webp",
     ],
-    tools: "Betaflight, Soldering, ESCs, GPS, 3D Printing",
-    description: "TODO :(",
-    challenges: "TODO :)",
-    results: "TODO :/",
+    tools: "Betaflight, ELRS, BetaFPV Configurator, Soldering, 3D Printing",
+    description:
+      "Built a fully functional quadcopter from scratch over winter 2025 break. Sourced all components independently — with the exception of 3D printed mounts for the ESC, flight controller, and GPS — and assembled the complete electrical and mechanical system. Soldered four A2212 1400KV brushless motors to a 4-in-1 55A ESC using 18AWG wire with heat-shrunk joints, wired a 1000μF capacitor to the battery leads to suppress voltage spikes, and mounted the RadioLink F722 flight controller, M1000 Pro GPS, and Radiomaster RP3 receiver onto the frame. Configured the full software stack across ELRS Configurator, Betaflight, and BetaFPV Configurator, including firmware flashing, receiver binding, motor direction mapping, and GPS setup.",
+    challenges:
+      "The hardest part was the firmware and software side. Getting the Radiomaster RP3 receiver bound and communicating with the BetaFPV LiteRadio3 transmitter required working through ELRS Configurator and resolving firmware version mismatches between the two. Flashing the RadioLink F722 and configuring Betaflight involved troubleshooting driver issues with the FT232RL USB-to-serial adapter, navigating port and resource assignments, and verifying motor spin directions — requiring multiple reflash cycles before everything was stable. On the hardware side, soldering the 4-in-1 ESC with four motor outputs and battery leads on 18AWG wire demanded clean joints under tight spatial constraints. Using a ShortSaver smoke stopper on first power-up ended up catching a wiring issue before it could damage anything.",
+    results:
+      "Delivered a fully assembled and flying quadcopter built entirely from individual components. The system integrates a RadioLink F722 flight controller, 4-in-1 55A ESC with integrated OSD, four A2212 1400KV brushless motors on 10x4.5-inch propellers, M1000 Pro GPS, and a Zeee 3S 5200mAh 11.1V LiPo, all configured and tuned in Betaflight. The project was a deep hands-on introduction to the full drone build pipeline — from mechanical assembly and soldering to firmware configuration and flight testing. Working through the motor and ESC configuration raised questions about the actual performance numbers behind the hardware — how much thrust the motors produce at a given throttle, how much current they pull, and how the battery voltage sags under load — which directly inspired a separate motor thrust stand build currently in progress to characterize them. The raw power of these motors is also feeding into plans for a utility drone build down the line. More broadly, spending time deep inside Betaflight and the firmware stack sparked an interest in developing a custom flight controller from scratch — understanding what these systems do under the hood well enough to build one — a longer-term goal that is feeding into a planned fixed-wing aircraft project that will be mostly 3D printed, potentially with foam wings, where a custom flight controller would be a natural next step.",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
     youtube:
       "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
