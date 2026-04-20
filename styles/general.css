@@ -1,3 +1,14 @@
+/* ─── Page Transition Overlay ───────────────────────────── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translateY(0);
+  transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
 /* ─── Base ─────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
@@ -90,12 +101,16 @@ body {
 
 .hero-taglines span {
   opacity: 0;
+}
+
+/* Triggered by JS after page transition overlay finishes revealing */
+.hero-taglines.animate span {
   animation: slideInLeft 0.6s ease forwards;
 }
 
-.hero-taglines span:nth-child(1) { animation-delay: 0.3s; }
-.hero-taglines span:nth-child(2) { animation-delay: 0.55s; }
-.hero-taglines span:nth-child(3) { animation-delay: 0.8s; }
+.hero-taglines.animate span:nth-child(1) { animation-delay: 0.3s; }
+.hero-taglines.animate span:nth-child(2) { animation-delay: 0.55s; }
+.hero-taglines.animate span:nth-child(3) { animation-delay: 0.8s; }
 
 @media (max-width: 800px) {
   .section-1 {

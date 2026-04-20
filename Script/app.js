@@ -1,3 +1,55 @@
+// ─── Page Transition ──────────────────────────────────────
+const ptOverlay = document.getElementById("page-transition");
+
+// Reveal: slide overlay up off screen once the page is fully loaded
+if (ptOverlay) {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        ptOverlay.style.transform = "translateY(-100%)";
+        // Start hero tagline animations only after overlay finishes sliding up
+        ptOverlay.addEventListener("transitionend", () => {
+          const taglines = document.querySelector(".hero-taglines");
+          if (taglines) taglines.classList.add("animate");
+        }, { once: true });
+      });
+    }, 1500);
+  });
+}
+
+// Cover the screen, then navigate to url
+function navigateTo(url) {
+  if (!ptOverlay) { window.location.href = url; return; }
+  // Instantly reposition overlay just above the screen (no animation)
+  ptOverlay.style.transition = "none";
+  ptOverlay.style.transform = "translateY(-100%)";
+  void ptOverlay.offsetWidth; // force reflow
+  // Slide down to cover
+  ptOverlay.style.transition = "";
+  ptOverlay.style.transform = "translateY(0)";
+  // Navigate once covered (with fallback timeout)
+  let done = false;
+  const go = () => { if (!done) { done = true; window.location.href = url; } };
+  ptOverlay.addEventListener("transitionend", go, { once: true });
+  setTimeout(go, 700);
+}
+
+// Intercept internal <a> clicks so they use the transition too
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a[href]");
+  if (!link) return;
+  const href = link.getAttribute("href");
+  if (
+    !href ||
+    href.startsWith("#") ||
+    href.startsWith("mailto") ||
+    link.target === "_blank" ||
+    /^https?:\/\//.test(href)
+  ) return;
+  e.preventDefault();
+  navigateTo(href);
+});
+
 // About Me — stacked card auto-swipe every 1.5s
 const photoCards = document.querySelectorAll(".photo-card");
 if (photoCards.length) {
