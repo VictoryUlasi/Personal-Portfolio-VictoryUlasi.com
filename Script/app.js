@@ -8,10 +8,14 @@ if (ptOverlay) {
       requestAnimationFrame(() => {
         ptOverlay.style.transform = "translateY(-100%)";
         // Start hero tagline animations only after overlay finishes sliding up
-        ptOverlay.addEventListener("transitionend", () => {
-          const taglines = document.querySelector(".hero-taglines");
-          if (taglines) taglines.classList.add("animate");
-        }, { once: true });
+        ptOverlay.addEventListener(
+          "transitionend",
+          () => {
+            const taglines = document.querySelector(".hero-taglines");
+            if (taglines) taglines.classList.add("animate");
+          },
+          { once: true },
+        );
       });
     }, 1500);
   });
@@ -19,7 +23,10 @@ if (ptOverlay) {
 
 // Cover the screen, then navigate to url
 function navigateTo(url) {
-  if (!ptOverlay) { window.location.href = url; return; }
+  if (!ptOverlay) {
+    window.location.href = url;
+    return;
+  }
   // Instantly reposition overlay just above the screen (no animation)
   ptOverlay.style.transition = "none";
   ptOverlay.style.transform = "translateY(-100%)";
@@ -29,7 +36,12 @@ function navigateTo(url) {
   ptOverlay.style.transform = "translateY(0)";
   // Navigate once covered (with fallback timeout)
   let done = false;
-  const go = () => { if (!done) { done = true; window.location.href = url; } };
+  const go = () => {
+    if (!done) {
+      done = true;
+      window.location.href = url;
+    }
+  };
   ptOverlay.addEventListener("transitionend", go, { once: true });
   setTimeout(go, 700);
 }
@@ -45,12 +57,13 @@ document.addEventListener("click", (e) => {
     href.startsWith("mailto") ||
     link.target === "_blank" ||
     /^https?:\/\//.test(href)
-  ) return;
+  )
+    return;
   e.preventDefault();
   navigateTo(href);
 });
 
-// About Me — stacked card auto-swipe every 1.5s
+// About Me,stacked card auto-swipe every 1.5s
 const photoCards = document.querySelectorAll(".photo-card");
 if (photoCards.length) {
   let active = 0;
@@ -79,7 +92,7 @@ if (photoCards.length) {
   setInterval(swipeNext, 3500);
 }
 
-// Scroll reveal — trigger animations when sections enter the viewport
+// Scroll reveal,trigger animations when sections enter the viewport
 const revealEls = document.querySelectorAll(
   ".reveal, .reveal-left, .reveal-right",
 );
@@ -120,7 +133,7 @@ function hideSidebar() {
   document.body.style.overflowY = "visible";
 }
 
-// Carousel — drag to scroll + auto-scroll
+// Carousel,drag to scroll + auto-scroll
 const outer = document.querySelector(".carousel-outer");
 
 if (outer) {
@@ -209,10 +222,23 @@ if (outer) {
   outer.addEventListener("touchstart", stopAutoScroll, { passive: true });
   outer.addEventListener("touchend", () => setTimeout(startAutoScroll, 2000));
 
-  window.addEventListener("load", () => setTimeout(startAutoScroll, 2500));
+  // Start auto-scroll only once the carousel itself is fully in view,
+  // then wait 2s so the first card is visible before scrolling begins
+  const startObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(startAutoScroll, 1000);
+          startObs.unobserve(outer);
+        }
+      });
+    },
+    { threshold: 0.99 },
+  );
+  startObs.observe(outer);
 }
 
-// Projects data — each object matches the order of cards in index.html
+// Projects data,each object matches the order of cards in index.html
 // project.html reads this to render the detail page
 const projects = [
   {
@@ -236,7 +262,7 @@ const projects = [
     description:
       "In a team of 4, designed and 3D printed a fully automated, battery-powered ball-transfer mechanism controlled by an Arduino, capable of acquiring and delivering ping pong balls into a target cup from 6 feet away within 30 seconds. Integrated DC motors, drive wheels, and buck converters for power regulation into a self-contained system, with Arduino programming handling motor and servo control",
     challenges:
-      "The biggest challenge was meeting all competition constraints simultaneously — the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while starting atleast 1-foot away from the ball and cup, simulating a horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning and a fried arduino MEGA. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
+      "The biggest challenge was meeting all competition constraints simultaneously,the mechanism had to acquire and deliver a ping pong ball from 6 feet away in under 30 seconds while starting atleast 1-foot away from the ball and cup, simulating a horizontal barrier, running entirely on battery, and starting from a single button press with no further human input. Designing the drive system and ball-acquisition geometry in SolidWorks required multiple iteration cycles before we had clearances that worked in simulation and in print. Power management was another hurdle: integrating buck converters to regulate voltage across the DC motors and servos without brownouts took considerable tuning and a fried arduino MEGA. On the software side, coordinating motor timing, servo actuation, and autonomous sequencing in Arduino C++ with no real-time OS meant hand-tuning delays and testing edge cases on the physical robot.",
     results:
       "The team delivered a fully autonomous, battery-powered ball-transfer robot that met all competition requirements. It successfully acquired a ping pong ball and deposited it into the target cup from 6 feet away within the 30-second window, clearing the required horizontal obstacle on every run. The final assembly incorporated multiple 3D-printed structural components designed in SolidWorks and simulated using SolidWorks Simulation, a custom buck-converter power circuit, and an Arduino control system handling all motor and servo sequencing. The project earned a 3 out of 2 for transferring more balls than were required, and it served as a practical introduction to the full mechanical-electrical-software integration cycle.",
     video: "https://www.youtube.com/embed/WOMEKv_0r2U?si=bsQVDOBgL1JcOevD",
@@ -256,15 +282,38 @@ const projects = [
     ],
     tools: "Betaflight, ELRS, BetaFPV Configurator, Soldering, 3D Printing",
     description:
-      "Built a fully functional quadcopter from scratch over winter 2025 break. Sourced all components independently — with the exception of 3D printed mounts for the ESC, flight controller, and GPS — and assembled the complete electrical and mechanical system. Soldered four A2212 1400KV brushless motors to a 4-in-1 55A ESC using 18AWG wire with heat-shrunk joints, wired a 1000μF capacitor to the battery leads to suppress voltage spikes, and mounted the RadioLink F722 flight controller, M1000 Pro GPS, and Radiomaster RP3 receiver onto the frame. Configured the full software stack across ELRS Configurator, Betaflight, and BetaFPV Configurator, including firmware flashing, receiver binding, motor direction mapping, and GPS setup.",
+      "Built a fully functional quadcopter from scratch over winter 2025 break. Sourced all components independently,with the exception of 3D printed mounts for the ESC, flight controller, and GPS,and assembled the complete electrical and mechanical system. Soldered four A2212 1400KV brushless motors to a 4-in-1 55A ESC using 18AWG wire with heat-shrunk joints, wired a 1000μF capacitor to the battery leads to suppress voltage spikes, and mounted the RadioLink F722 flight controller, M1000 Pro GPS, and Radiomaster RP3 receiver onto the frame. Configured the full software stack across ELRS Configurator, Betaflight, and BetaFPV Configurator, including firmware flashing, receiver binding, motor direction mapping, and GPS setup.",
     challenges:
-      "The hardest part was the firmware and software side. Getting the Radiomaster RP3 receiver bound and communicating with the BetaFPV LiteRadio3 transmitter required working through ELRS Configurator and resolving firmware version mismatches between the two. Flashing the RadioLink F722 and configuring Betaflight involved troubleshooting driver issues with the FT232RL USB-to-serial adapter, navigating port and resource assignments, and verifying motor spin directions — requiring multiple reflash cycles before everything was stable. On the hardware side, soldering the 4-in-1 ESC with four motor outputs and battery leads on 18AWG wire demanded clean joints under tight spatial constraints. Using a ShortSaver smoke stopper on first power-up ended up catching a wiring issue before it could damage anything.",
+      "The hardest part was the firmware and software side. Getting the Radiomaster RP3 receiver bound and communicating with the BetaFPV LiteRadio3 transmitter required working through ELRS Configurator and resolving firmware version mismatches between the two. Flashing the RadioLink F722 and configuring Betaflight involved troubleshooting driver issues with the FT232RL USB-to-serial adapter, navigating port and resource assignments, and verifying motor spin directions,requiring multiple reflash cycles before everything was stable. On the hardware side, soldering the 4-in-1 ESC with four motor outputs and battery leads on 18AWG wire demanded clean joints under tight spatial constraints. Using a ShortSaver smoke stopper on first power-up ended up catching a wiring issue before it could damage anything.",
     results:
-      "Delivered a fully assembled and flying quadcopter built entirely from individual components. The system integrates a RadioLink F722 flight controller, 4-in-1 55A ESC with integrated OSD, four A2212 1400KV brushless motors on 10x4.5-inch propellers, M1000 Pro GPS, and a Zeee 3S 5200mAh 11.1V LiPo, all configured and tuned in Betaflight. The project was a deep hands-on introduction to the full drone build pipeline — from mechanical assembly and soldering to firmware configuration and flight testing. Working through the motor and ESC configuration raised questions about the actual performance numbers behind the hardware — how much thrust the motors produce at a given throttle, how much current they pull, and how the battery voltage sags under load — which directly inspired a separate motor thrust stand build currently in progress to characterize them. The raw power of these motors is also feeding into plans for a utility drone build down the line. More broadly, spending time deep inside Betaflight and the firmware stack sparked an interest in developing a custom flight controller from scratch — understanding what these systems do under the hood well enough to build one — a longer-term goal that is feeding into a planned fixed-wing aircraft project that will be mostly 3D printed, potentially with foam wings, where a custom flight controller would be a natural next step.",
+      "Delivered a fully assembled and flying quadcopter built entirely from individual components. The system integrates a RadioLink F722 flight controller, 4-in-1 55A ESC with integrated OSD, four A2212 1400KV brushless motors on 10x4.5-inch propellers, M1000 Pro GPS, and a Zeee 3S 5200mAh 11.1V LiPo, all configured and tuned in Betaflight. The project was a deep hands-on introduction to the full drone build pipeline,from mechanical assembly and soldering to firmware configuration and flight testing. Working through the motor and ESC configuration raised questions about the actual performance numbers behind the hardware,how much thrust the motors produce at a given throttle, how much current they pull, and how the battery voltage sags under load,which directly inspired a separate motor thrust stand build currently in progress to characterize them. The raw power of these motors is also feeding into plans for a utility drone build down the line. More broadly, spending time deep inside Betaflight and the firmware stack sparked an interest in developing a custom flight controller from scratch,understanding what these systems do under the hood well enough to build one,a longer-term goal that is feeding into a planned fixed-wing aircraft project that will be mostly 3D printed, potentially with foam wings, where a custom flight controller would be a natural next step.",
     video: "https://www.youtube.com/embed/vT9Ri4sB41k?si=_ZsVtJL3YgJyN4_I",
     youtube:
       "https://youtube.com/playlist?list=PLJGlvDl50mAk4ceH8hQe5lAylQNXesATw&si=uZkgRPRSHkPaOr4F",
     github: "",
+    live: "",
+  },
+  {
+    title: "Motor Thrust Stand",
+    images: [
+      "images/project_Images/Thrust-stand/IMG_0952.webp",
+      "images/project_Images/Thrust-stand/IMG_0943.webp",
+      "images/project_Images/Thrust-stand/IMG_0944.webp",
+      "images/project_Images/Thrust-stand/IMG_0946.webp",
+      "images/project_Images/Thrust-stand/IMG_0948.webp",
+      "images/project_Images/Thrust-stand/IMG_0949.webp",
+    ],
+    tools:
+      "STM32F446RE, STM32CubeIDE, Embedded-C, MATLAB, HX711, ACS758, UART, SPI, 3D Printing, Soldering, Physics 2",
+    description:
+      "A real-time motor performance measurement system built around the STM32F446RE (NUCLEO-F446RE), directly inspired by the drone build and a desire to actually quantify what the motors are capable of. Measures thrust (g), current draw (A), and battery voltage (V) simultaneously and streams live data over UART at 115200 baud as CSV to MATLAB for analysis and plotting. Thrust is measured via a 10kg cantilever beam load cell with an HX711 24-bit ADC; current via an ACS758LCB-050B 50A hall-effect sensor; and voltage via a 10kΩ/3kΩ resistor divider scaled to the STM32's 3.3V ADC range. The frame is built on 2020 aluminum extrusion with 3D printed motor and electronics mounts.",
+    challenges:
+      "Coordinating three different sensing modalities simultaneously, a clocked serial protocol for the HX711, analog ADC reads for voltage and current, and UART output, without blocking any channel required careful attention to HAL timing in STM32CubeIDE. The HX711 required calibrating a scale factor of 200.9 counts/gram from known weights, and tare runs automatically on startup, meaning any load on the motor mount at power-on corrupts all subsequent thrust readings. Current sensing with the ACS758 introduced noise that required filtering in firmware. The voltage divider had to be precisely scaled, a 10kΩ/3kΩ resistor network brings the 3S LiPo's 12.6V maximum down to the STM32's 3.3V ADC ceiling, with the firmware reversing the divider ratio to reconstruct actual pack voltage. Getting all three channels reading stably and streaming clean CSV over UART simultaneously was the core integration challenge.",
+    results:
+      "Hardware assembly and all three sensing channels are fully operational: load cell calibration, voltage monitoring, current sensing, and UART CSV streaming are complete and bench-verified. The system outputs timestamped rows of thrust, voltage, and current at 115200 baud, ready for MATLAB ingestion. Remaining work includes a current noise filtering pass in firmware, the full MATLAB plotting script for thrust curves, current draw, voltage sag, and motor efficiency (g/W), a complete throttle sweep dataset, and a PCB design to replace the breadboard wiring. The data this system produces will directly inform motor selection and power budgets for the planned utility drone and fixed-wing builds.",
+    video: "",
+    youtube: "",
+    github: "https://github.com/VictoryUlasi/Thrust-Stand",
     live: "",
   },
   {
@@ -286,25 +335,11 @@ const projects = [
     live: "",
   },
   {
-    title: "Library Management System",
-    images: ["images/project_Images/lib_management.webp"],
-    tools: "C++, File I/O, OOP, Windows API",
-    description:
-      "A Windows console application that manages a library catalog of books and users. Supports adding and removing books and users, issuing and returning books, and displaying the full inventory with checkout status. All data persists between sessions using semicolon-delimited flat text files (libBook.txt, libUser.txt), loaded into memory at startup across three classes — Book, User, and Library, and written back on every change.",
-    challenges:
-      "The biggest challenge was implementing reliable file persistence without a database. Since there is no DELETE in a flat file, removing a record requires rewriting the entire file from scratch. I also had to force the OS to flush write buffers mid-session using a refresh() function that closes and reopens the output stream after each add operation, rather than only writing on program exit. Input validation was handled manually with character-by-character digit checks and cin recovery loops since there was no framework to lean on.",
-    results:
-      "A fully working library system with clean three-class OOP design and persistent storage across sessions. The project ships with 20 sample books and 20 sample users pre-loaded. It demonstrated practical tradeoffs in flat-file architecture versus a proper database, which is listed as the next step in the project roadmap alongside a planned GUI.",
-    video: "",
-    github: "https://github.com/VictoryUlasi/Library-Management-System",
-    live: "",
-  },
-  {
     title: "Vector Calculator + GUI",
     images: ["images/project_Images/vectory_calculator.webp"],
     tools: "C++17, Qt 6, Gnuplot, Boost, Visual Studio, CMake",
     description:
-      "Built in two stages: first a console-based REPL in Visual Studio using custom Vector2D and Vector3D classes with operator overloads, supporting addition, subtraction, scalar multiplication, dot product, cross product, magnitude, angle between vectors, and real-time Gnuplot visualization of vector arrows. Then rebuilt the entire interface as a Qt 6 desktop GUI with form fields, live result display, and progressive UI disclosure — checkboxes dynamically unlock 3D fields, scalar mode, and magnitude mode to prevent invalid operation combinations.",
+      "Built in two stages: first a console-based REPL in Visual Studio using custom Vector2D and Vector3D classes with operator overloads, supporting addition, subtraction, scalar multiplication, dot product, cross product, magnitude, angle between vectors, and real-time Gnuplot visualization of vector arrows. Then rebuilt the entire interface as a Qt 6 desktop GUI with form fields, live result display, and progressive UI disclosure, checkboxes dynamically unlock 3D fields, scalar mode, and magnitude mode to prevent invalid operation combinations.",
     challenges:
       "The main technical challenge in the GUI version was handling both 2D and 3D vectors through a single unified interface without duplicating every operation handler. This was solved using C++17 std::variant and std::visit with if constexpr type checks at compile time, so dimension mismatches are caught without runtime branching or inheritance. In the console version, integrating Gnuplot required piping commands through the gnuplot-iostream header-only library and normalizing both vectors to unit length before plotting so the visualization always fits within fixed axes.",
     results:
@@ -315,10 +350,24 @@ const projects = [
     github: "https://github.com/VictoryUlasi/Vector-Calculator-GUI-",
     live: "",
   },
+  {
+    title: "Library Management System",
+    images: ["images/project_Images/lib_management.webp"],
+    tools: "C++, File I/O, OOP, Windows API",
+    description:
+      "A Windows console application that manages a library catalog of books and users. Supports adding and removing books and users, issuing and returning books, and displaying the full inventory with checkout status. All data persists between sessions using semicolon-delimited flat text files (libBook.txt, libUser.txt), loaded into memory at startup across three classes,Book, User, and Library, and written back on every change.",
+    challenges:
+      "The biggest challenge was implementing reliable file persistence without a database. Since there is no DELETE in a flat file, removing a record requires rewriting the entire file from scratch. I also had to force the OS to flush write buffers mid-session using a refresh() function that closes and reopens the output stream after each add operation, rather than only writing on program exit. Input validation was handled manually with character-by-character digit checks and cin recovery loops since there was no framework to lean on.",
+    results:
+      "A fully working library system with clean three-class OOP design and persistent storage across sessions. The project ships with 20 sample books and 20 sample users pre-loaded. It demonstrated practical tradeoffs in flat-file architecture versus a proper database, which is listed as the next step in the project roadmap alongside a planned GUI.",
+    video: "",
+    github: "https://github.com/VictoryUlasi/Library-Management-System",
+    live: "",
+  },
   // add more projects here
 ];
 
-// Contact form — Formspree AJAX submission
+// Contact form,Formspree AJAX submission
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {

@@ -35,7 +35,7 @@
           <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
         </li>
         <li class="hideonmobile"><a href="#contact-sect">Contact</a></li>
-        <!-- Hamburger icon — hidden on desktop, shown on mobile -->
+        <!-- Hamburger icon,hidden on desktop, shown on mobile -->
         <li onclick="showSidebar()" class="menu-icon">
           <a href="#"><span class="material-symbols-outlined">menu</span></a>
         </li>
@@ -100,8 +100,8 @@
           engineering at UT Arlington and like to design and build embedded
           systems alongside my coursework with a hands-on approach. I'm actively
           working toward industry experience in aerospace engineering. Outside
-          of school and work, I enjoy learning new things — engineering related
-          or not — playing my guitar, working out, and cooking. My mission is to
+          of school and work, I enjoy learning new things, engineering related
+          or not, playing my guitar, working out, and cooking. My mission is to
           make a positive impact in the engineering community and the world
           through my work. I'm always looking to connect, so feel free to reach
           out to chat or brainstorm ideas!
@@ -117,10 +117,8 @@
 
       <div class="carousel-outer reveal" style="transition-delay: 0.15s">
         <div class="carousel-track">
-          <div
-            class="project-card"
-            onclick="navigateTo('project.html?id=0')"
-          >
+          <div class="project-card" onclick="navigateTo('project.html?id=0')">
+            <span class="card-status done">Done</span>
             <img
               src="images/project_Images/1351/MAE-1351.webp"
               alt="MAE 1351 Final Project"
@@ -144,10 +142,8 @@
             </div>
           </div>
 
-          <div
-            class="project-card"
-            onclick="navigateTo('project.html?id=1')"
-          >
+          <div class="project-card" onclick="navigateTo('project.html?id=1')">
+            <span class="card-status done">Done</span>
             <img
               src="images/project_Images/F405-Drone/F405-Drone.webp"
               alt="F405 Drone Build"
@@ -172,10 +168,32 @@
             </div>
           </div>
 
-          <div
-            class="project-card"
-            onclick="navigateTo('project.html?id=2')"
-          >
+          <div class="project-card" onclick="navigateTo('project.html?id=2')">
+            <span class="card-status wip">WIP</span>
+            <img
+              src="images/project_Images/Thrust-stand/IMG_0952.webp"
+              alt="Motor Thrust Stand"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Motor Thrust Stand</h3>
+              <p class="card-desc">
+                A real-time motor performance measurement system built around
+                the STM32F446RE. Measures thrust, current draw, and battery
+                voltage simultaneously, streaming data over UART to MATLAB for
+                analysis. Built to characterize the motors from the drone build.
+              </p>
+              <div class="card-links">
+                <a><s>YouTube</s></a>
+                <a href="https://github.com/VictoryUlasi/Thrust-Stand"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" onclick="navigateTo('project.html?id=3')">
+            <span class="card-status wip">WIP</span>
             <img
               src="images/project_Images/Beam-Solver/plot1.webp"
               alt="Engineering Statics Beam-Solver"
@@ -199,42 +217,11 @@
             </div>
           </div>
 
-          <div
-            class="project-card"
-            onclick="navigateTo('project.html?id=3')"
-          >
-            <img
-              src="images/project_Images/lib_management.webp"
-              alt="Library Management System"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Library Management System</h3>
-              <p class="card-desc">
-                Developed a console-based library management system in C++
-                featuring a menu-driven interface for adding and removing books
-                and users, issuing and returning books, and displaying
-                inventory. Implemented object-oriented design across three
-                classes — Book, User, and Library — with file I/O for persistent
-                data storage across sessions.
-              </p>
-              <div class="card-links">
-                <a
-                  href="https://github.com/VictoryUlasi/Library-Management-System"
-                  >GitHub</a
-                >
-                <a><s>Live Site</s></a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card"
-            onclick="navigateTo('project.html?id=4')"
-          >
+          <div class="project-card" onclick="navigateTo('project.html?id=4')">
+            <span class="card-status done">Done</span>
             <img
               src="images/project_Images/vectory_calculator.webp"
-              alt="Project 3"
+              alt="Vector Calculator + GUI"
               class="card-img"
             />
             <div class="card-body">
@@ -257,6 +244,33 @@
                   href="https://youtube.com/playlist?list=PLJGlvDl50mAmg3OLYDdICzrSzgk8wiWnX&si=phsbpr7kq-MLmVxn"
                   >Youtube</a
                 >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" onclick="navigateTo('project.html?id=5')">
+            <span class="card-status done">Done</span>
+            <img
+              src="images/project_Images/lib_management.webp"
+              alt="Library Management System"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Library Management System</h3>
+              <p class="card-desc">
+                Developed a console-based library management system in C++
+                featuring a menu-driven interface for adding and removing books
+                and users, issuing and returning books, and displaying
+                inventory. Implemented object-oriented design across three
+                classes: Book, User, and Library, with file I/O for persistent
+                data storage across sessions.
+              </p>
+              <div class="card-links">
+                <a
+                  href="https://github.com/VictoryUlasi/Library-Management-System"
+                  >GitHub</a
+                >
+                <a><s>Live Site</s></a>
               </div>
             </div>
           </div>
@@ -361,7 +375,7 @@
           <div class="footer-brand">
             <span class="footer-name">Victory Ulasi</span>
             <span class="footer-tagline"
-              >Aerospace Engineering Student &mdash; UT Arlington</span
+              >Aerospace Engineering Student , UT Arlington</span
             >
           </div>
           <nav class="footer-nav">
