@@ -46,21 +46,48 @@ function navigateTo(url) {
   setTimeout(go, 700);
 }
 
-// Intercept internal <a> clicks so they use the transition too
+// Cover screen, open link in new tab, then reveal again
+function navigateToNewTab(url) {
+  if (!ptOverlay) {
+    window.open(url, "_blank", "noopener,noreferrer");
+    return;
+  }
+  ptOverlay.style.transition = "none";
+  ptOverlay.style.transform = "translateY(-100%)";
+  void ptOverlay.offsetWidth;
+  ptOverlay.style.transition = "";
+  ptOverlay.style.transform = "translateY(0)";
+
+  const openAndReveal = () => {
+    window.open(url, "_blank", "noopener,noreferrer");
+    setTimeout(() => {
+      ptOverlay.style.transform = "translateY(-100%)";
+    }, 300);
+  };
+
+  let done = false;
+  const go = () => {
+    if (!done) { done = true; openAndReveal(); }
+  };
+  ptOverlay.addEventListener("transitionend", go, { once: true });
+  setTimeout(go, 700);
+}
+
+// Intercept <a> clicks so they use the transition too
 document.addEventListener("click", (e) => {
   const link = e.target.closest("a[href]");
   if (!link) return;
   const href = link.getAttribute("href");
-  if (
-    !href ||
-    href.startsWith("#") ||
-    href.startsWith("mailto") ||
-    link.target === "_blank" ||
-    /^https?:\/\//.test(href)
-  )
-    return;
+  if (!href || href.startsWith("#") || href.startsWith("mailto")) return;
+
+  const isNewTab = link.target === "_blank" || /^https?:\/\//.test(href);
   e.preventDefault();
-  navigateTo(href);
+
+  if (isNewTab) {
+    navigateToNewTab(href);
+  } else {
+    navigateTo(href);
+  }
 });
 
 // About Me,stacked card auto-swipe every 1.5s
