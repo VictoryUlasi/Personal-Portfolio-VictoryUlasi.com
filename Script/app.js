@@ -17,7 +17,7 @@ if (ptOverlay) {
           { once: true },
         );
       });
-    }, 1500);
+    }, 200);
   });
 }
 
@@ -67,7 +67,10 @@ function navigateToNewTab(url) {
 
   let done = false;
   const go = () => {
-    if (!done) { done = true; openAndReveal(); }
+    if (!done) {
+      done = true;
+      openAndReveal();
+    }
   };
   ptOverlay.addEventListener("transitionend", go, { once: true });
   setTimeout(go, 700);
@@ -346,16 +349,16 @@ const projects = [
   {
     title: "Engineering Statics Beam Solver",
     images: [
+      "images/project_Images/Beam-Solver/plot2.webp",
       "images/project_Images/Beam-Solver/plot1.webp",
-      "images/project_Images/Beam-Solver/output_img.webp",
     ],
     tools: "MATLAB, Engineering Statics",
     description:
-      "Designed and built a MATLAB-based structural beam solver for statically determinate pin-roller beams. Takes user-defined point loads and distributed loads as input, solves for support reactions using matrix equilibrium equations, and outputs shear force and bending moment diagrams with real-time value queries at any position along the beam.",
+      "Developed a MATLAB beam solver for statically determinate pin-roller beams. Takes user-defined point loads and distributed loads as input, solves for support reactions using matrix equilibrium equations, and outputs shear force and bending moment diagrams with real-time value queries at any position along the beam.",
     challenges:
-      "The biggest challenge was bridging the gap between solving beam problems by hand and automating them correctly in code. Setting up the equilibrium system as Ax = b required translating three scalar equations into matrix form and understanding what each coefficient represented, a conceptual leap from plug-and-chug statics. Handling distributed loads added another layer: the equivalent point load works for reactions but breaks down for the shear diagram, where load intensity has to be evaluated continuously at every point. Getting sign conventions consistent across point loads, distributed loads, and reactions without introducing subtle errors required careful thought about what positive and negative actually mean physically. Indexing the linspace array accurately for arbitrary user-entered positions was a smaller but real debugging challenge that exposed how discretization introduces numerical error.",
+      "The biggest challenge was bridging the gap between solving beam problems by hand and automating them correctly in code. Setting up the equilibrium system as Ax = b required translating three scalar equations into matrix form and understanding what each coefficient represented, a conceptual leap from plug-and-chug statics. Handling distributed loads added another layer: the equivalent point load works for reactions but breaks down for the shear diagram, where load intensity has to be evaluated continuously at every point using linear interpolation and partial trapezoid area integration. Getting sign conventions consistent across point loads, distributed loads, and reactions without introducing subtle errors required careful thought about what positive and negative actually mean physically. Indexing the linspace array accurately for arbitrary user-entered positions was a smaller but real debugging challenge that exposed how discretization introduces numerical error.",
     results:
-      "Delivered a working MATLAB beam solver that accepts user-defined point loads and distributed loads for a pin-roller beam of any length. The solver correctly computes support reactions by assembling and solving a 3x3 equilibrium matrix, converts trapezoidal distributed loads to equivalent point loads using the centroid integral formula, and builds shear and bending moment diagrams across 1000 discrete points along the beam. Shear is computed by accumulating forces left to right and moment by numerically integrating shear using cumulative summation, directly applying the dM/dx = V relationship from statics. Results are visualized in a clean two-panel MATLAB figure with labeled axes and a zero reference line, and shear and moment values can be queried at any position along the beam. Distributed load shear contribution, additional support types, and a beam visualization panel are planned as next extensions.",
+      "Delivered a working MATLAB beam solver that accepts user-defined point loads and trapezoidal distributed loads for a pin-roller beam of any length. The solver assembles and solves a 3x3 equilibrium matrix for support reactions, converts distributed loads to equivalent point loads using the centroid integral formula for the reaction solve, then separately computes continuous shear contributions by evaluating partial trapezoid area at every point along the beam — correctly producing a ramped shear diagram through distributed load regions rather than a single jump. Moment is computed by numerically integrating shear using cumulative summation, directly applying the dM/dx = V relationship. Results are visualized in a clean two-panel MATLAB figure with labeled axes and a zero reference line, and shear and moment values can be queried at any position. Additional support types, applied moments, and a beam visualization panel are planned as next extensions.",
     video: "",
     youtube: "",
     github: "https://github.com/VictoryUlasi/Engineering-Statics-BeamSolver",
