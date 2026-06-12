@@ -52,9 +52,12 @@ function navigateToNewTab(url) {
   // Safari's popup blocker will suppress it
   window.open(url, "_blank", "noopener,noreferrer");
 
-  if (!ptOverlay) return;
+  // Skip animation on touch devices — returning to the page via back button
+  // leaves the overlay covering the screen on mobile Safari
+  const isTouchDevice = navigator.maxTouchPoints > 0;
+  if (!ptOverlay || isTouchDevice) return;
 
-  // Animate overlay independently of the tab open
+  // Animate overlay independently of the tab open (desktop only)
   ptOverlay.style.transition = "none";
   ptOverlay.style.transform = "translateY(-100%)";
   void ptOverlay.offsetWidth;
