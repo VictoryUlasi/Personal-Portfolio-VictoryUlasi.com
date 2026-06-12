@@ -48,32 +48,24 @@ function navigateTo(url) {
 
 // Cover screen, open link in new tab, then reveal again
 function navigateToNewTab(url) {
-  if (!ptOverlay) {
-    window.open(url, "_blank", "noopener,noreferrer");
-    return;
-  }
+  // Open immediately — must be synchronous within the user gesture or
+  // Safari's popup blocker will suppress it
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  if (!ptOverlay) return;
+
+  // Animate overlay independently of the tab open
   ptOverlay.style.transition = "none";
   ptOverlay.style.transform = "translateY(-100%)";
   void ptOverlay.offsetWidth;
   ptOverlay.style.transition = "";
   ptOverlay.style.transform = "translateY(0)";
 
-  const openAndReveal = () => {
-    window.open(url, "_blank", "noopener,noreferrer");
-    setTimeout(() => {
-      ptOverlay.style.transform = "translateY(-100%)";
-    }, 300);
+  const reveal = () => {
+    ptOverlay.style.transform = "translateY(-100%)";
   };
-
-  let done = false;
-  const go = () => {
-    if (!done) {
-      done = true;
-      openAndReveal();
-    }
-  };
-  ptOverlay.addEventListener("transitionend", go, { once: true });
-  setTimeout(go, 700);
+  ptOverlay.addEventListener("transitionend", reveal, { once: true });
+  setTimeout(reveal, 700);
 }
 
 // Intercept <a> clicks so they use the transition too
