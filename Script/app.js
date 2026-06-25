@@ -394,6 +394,35 @@ const projects = [
   // add more projects here
 ];
 
+// ─── Floating Nav Button ──────────────────────────────────
+const fabWrap = document.getElementById("photo-fab-wrap");
+const fabMenu = document.getElementById("photo-fab-menu");
+const fabIcon = document.getElementById("fab-icon");
+
+function toggleFabMenu() {
+  if (!fabMenu) return;
+  const open = fabMenu.classList.toggle("open");
+  fabIcon.textContent = open ? "close" : "menu";
+}
+
+if (fabWrap) {
+  document.addEventListener("click", (e) => {
+    if (fabMenu.classList.contains("open") && !e.target.closest("#photo-fab-wrap")) {
+      fabMenu.classList.remove("open");
+      fabIcon.textContent = "menu";
+    }
+  });
+
+  window.addEventListener("scroll", () => {
+    const headerGone = window.scrollY > window.innerHeight * 0.1;
+    fabWrap.classList.toggle("visible", headerGone);
+    if (!headerGone) {
+      fabMenu.classList.remove("open");
+      fabIcon.textContent = "menu";
+    }
+  }, { passive: true });
+}
+
 // Contact form,Formspree AJAX submission
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {

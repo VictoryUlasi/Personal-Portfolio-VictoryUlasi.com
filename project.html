@@ -34,6 +34,7 @@
         <li class="hideonmobile">
           <a href="index.html#project-sect">Projects</a>
         </li>
+        <li class="hideonmobile"><a href="photography.html">Photography</a></li>
         <li class="hideonmobile">
           <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
         </li>
@@ -61,6 +62,7 @@
         <li>
           <a onclick="hideSidebar()" href="index.html#project-sect">Projects</a>
         </li>
+        <li><a onclick="hideSidebar()" href="photography.html">Photography</a></li>
         <li>
           <a
             onclick="hideSidebar()"
@@ -139,6 +141,21 @@
         "
       >
         <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+
+    <!-- Floating Nav — desktop only, appears on scroll -->
+    <div class="photo-fab-wrap" id="photo-fab-wrap">
+      <div class="photo-fab-menu" id="photo-fab-menu">
+        <a href="index.html" class="fab-link">Home</a>
+        <a href="index.html#about-sect" class="fab-link">About</a>
+        <span class="fab-link fab-current">Projects</span>
+        <a href="photography.html" class="fab-link">Photography</a>
+        <a href="files/Victory Ulasi Resume.pdf" target="_blank" class="fab-link">Resume</a>
+        <a href="index.html#contact-sect" class="fab-link">Contact</a>
+      </div>
+      <button class="photo-fab" id="photo-fab" onclick="toggleFabMenu()">
+        <span class="material-symbols-outlined" id="fab-icon">menu</span>
       </button>
     </div>
 

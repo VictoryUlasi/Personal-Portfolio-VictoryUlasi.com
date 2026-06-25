@@ -31,6 +31,7 @@
         <li><a href="#">Victory Ulasi</a></li>
         <li class="hideonmobile"><a href="#about-sect">About</a></li>
         <li class="hideonmobile"><a href="#project-sect">Projects</a></li>
+        <li class="hideonmobile"><a href="photography.html">Photography</a></li>
         <li class="hideonmobile">
           <a href="files/Victory Ulasi Resume.pdf" target="_blank">Resume</a>
         </li>
@@ -54,6 +55,7 @@
         </li>
         <li><a onclick="hideSidebar()" href="#about-sect">About Me</a></li>
         <li><a onclick="hideSidebar()" href="#project-sect">Projects</a></li>
+        <li><a onclick="hideSidebar()" href="photography.html">Photography</a></li>
         <li>
           <a
             onclick="hideSidebar()"
@@ -101,10 +103,11 @@
           and software projects alongside my coursework with a hands-on
           approach. I'm actively working toward industry experience in aerospace
           engineering. Outside of school and work, I enjoy learning new things —
-          engineering related or not — playing my guitar, working out, and
-          cooking. My mission is to make a positive impact in the engineering
-          community and the world through my work. I'm always looking to
-          connect, so feel free to reach out to chat or brainstorm ideas!
+          engineering related or not — playing my guitar, working out, cooking,
+          and photography as of late. My mission is to make a positive impact in
+          the engineering community and the world through my work. I'm always
+          looking to connect, so feel free to reach out to chat or brainstorm
+          ideas!
         </p>
       </div>
     </section>
@@ -418,12 +421,27 @@
             >&copy; <span id="footer-year"></span> Victory Ulasi. All rights
             reserved.</span
           >
-          <span>Designed &amp; built by Victory Ulasi</span>
+          <span>Designed &amp; built by Victory Ulasi &amp; Claude</span>
         </div>
       </div>
     </footer>
 
     <div id="page-transition"></div>
+    <!-- Floating Nav — desktop only, appears on scroll -->
+    <div class="photo-fab-wrap" id="photo-fab-wrap">
+      <div class="photo-fab-menu" id="photo-fab-menu">
+        <span class="fab-link fab-current">Home</span>
+        <a href="index.html#about-sect" class="fab-link">About</a>
+        <a href="index.html#project-sect" class="fab-link">Projects</a>
+        <a href="photography.html" class="fab-link">Photography</a>
+        <a href="files/Victory Ulasi Resume.pdf" target="_blank" class="fab-link">Resume</a>
+        <a href="index.html#contact-sect" class="fab-link">Contact</a>
+      </div>
+      <button class="photo-fab" id="photo-fab" onclick="toggleFabMenu()">
+        <span class="material-symbols-outlined" id="fab-icon">menu</span>
+      </button>
+    </div>
+
     <script src="Script/app.js"></script>
   </body>
 </html>
