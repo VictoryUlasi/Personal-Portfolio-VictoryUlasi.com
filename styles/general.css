@@ -86,6 +86,17 @@ body {
   }
 }
 
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateX(0);
+  }
+}
+
 .hero-taglines {
   display: flex;
   flex-direction: column;
@@ -133,9 +144,19 @@ body {
   display: flex;
   width: clamp(3.5rem, 7vw, 6rem);
   height: clamp(3.5rem, 7vw, 6rem);
-  opacity: 0.75;
+  opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+/* Triggered by JS at the same time as the taglines */
+.hero-socials.animate a {
+  animation: slideInRight 0.6s ease forwards;
+}
+
+.hero-socials.animate a:nth-child(1) { animation-delay: 0.3s; }
+.hero-socials.animate a:nth-child(2) { animation-delay: 0.55s; }
+.hero-socials.animate a:nth-child(3) { animation-delay: 0.8s; }
+.hero-socials.animate a:nth-child(4) { animation-delay: 1.05s; }
 
 .hero-socials img {
   width: 100%;

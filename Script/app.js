@@ -13,6 +13,8 @@ if (ptOverlay) {
           () => {
             const taglines = document.querySelector(".hero-taglines");
             if (taglines) taglines.classList.add("animate");
+            const socials = document.querySelector(".hero-socials");
+            if (socials) socials.classList.add("animate");
           },
           { once: true },
         );
