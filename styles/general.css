@@ -112,6 +112,42 @@ body {
 .hero-taglines.animate span:nth-child(2) { animation-delay: 0.55s; }
 .hero-taglines.animate span:nth-child(3) { animation-delay: 0.8s; }
 
+/* Row pairing taglines (left) with social icons (right) */
+.hero-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 1.75rem);
+  padding-right: 1vw;
+}
+
+.hero-socials a {
+  display: flex;
+  width: clamp(3.5rem, 7vw, 6rem);
+  height: clamp(3.5rem, 7vw, 6rem);
+  opacity: 0.75;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-socials img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-socials a:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
 @media (max-width: 800px) {
   .section-1 {
     height: 100vh;
@@ -122,6 +158,21 @@ body {
     font-size: 21vw; /* large enough that VICTORY fills the line, ULASI wraps */
     text-align: left;
     line-height: 1;
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-socials {
+    padding-right: 0;
+  }
+
+  .hero-socials a {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
@@ -374,22 +425,30 @@ body {
   align-items: center;
 }
 
-/* Two-column layout: form left, socials right */
 .contact-body {
   display: flex;
-  flex-direction: row;
-  gap: 4rem;
+  justify-content: center;
   width: 90%;
   max-width: 960px;
-  align-items: flex-start;
 }
 
 /* ─── Contact Form ─── */
 .contact-form {
-  flex: 1;
+  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
+}
+
+.contact-form-row {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.contact-form-row input {
+  flex: 1;
+  min-width: 0;
 }
 
 .contact-form input,
@@ -421,11 +480,11 @@ body {
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 130px;
+  min-height: 200px;
 }
 
 .contact-form button[type="submit"] {
-  align-self: flex-start;
+  align-self: center;
   padding: 0.7rem 2rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 2rem;
@@ -460,49 +519,6 @@ body {
 
 .form-status.success { color: rgba(110, 240, 160, 0.9); }
 .form-status.error   { color: rgba(255, 110, 110, 0.9); }
-
-/* ─── Contact Socials ─── */
-.contact-socials {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  flex-shrink: 0;
-  width: clamp(200px, 30%, 300px);
-}
-
-.contact-item {
-  display: flex;
-  text-decoration: none;
-  color: white;
-  transition: transform 0.3s ease;
-}
-
-.contact-item:hover {
-  transform: scale(1.05);
-  transition-delay: 0s;
-}
-
-.contact-inner {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-}
-
-.contact-icon {
-  width: 3rem;
-  height: 3rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.contact-item span {
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-  font-weight: 200;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 
 /* ─── Typography ────────────────────────────────────────── */
 
@@ -561,16 +577,17 @@ body {
     min-width: 90vw;
   }
 
-  /* Contact: stack form and socials vertically on mobile */
   .contact-body {
-    flex-direction: column;
-    gap: 2.5rem;
     width: 90%;
-    align-items: stretch;
   }
 
   .contact-form {
     width: 100%;
+    max-width: unset;
+  }
+
+  .contact-form-row {
+    flex-direction: column;
   }
 
   /* Full-width submit button on mobile */
@@ -578,32 +595,6 @@ body {
     align-self: stretch;
     text-align: center;
   }
-
-  /* 2×2 grid for socials */
-  .contact-socials {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  /* Center icon + label stacked in each grid cell */
-  .contact-item {
-    justify-content: center;
-  }
-
-  .contact-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    text-align: center;
-  }
-
-  .contact-item span {
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-  }
-
 }
 
 /* Full width sidebar on small phones — show site name again */
@@ -645,11 +636,6 @@ body {
 }
 
 /* Re-declare hover transforms after reveal rules so they aren't overridden */
-.contact-item:hover {
-  transform: scale(1.05);
-  transition-delay: 0s;
-}
-
 .about-me:hover {
   transform: scale(1.05);
 }
