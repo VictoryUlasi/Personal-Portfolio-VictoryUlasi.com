@@ -2,6 +2,11 @@
 // thumbs: shown in grid (lazy loaded, ~800px wide WebP)
 // full: shown in lightbox (~2400px wide WebP)
 const photos = [
+  { thumb: "images/photography/thumbs/IMG_2961.webp", full: "images/photography/full/IMG_2961.webp", alt: "Traffic signal on Main Street", caption: "Main St, 3100 block — Deep Ellum, Dallas" },
+  { thumb: "images/photography/thumbs/IMG_2962.webp", full: "images/photography/full/IMG_2962.webp", alt: "Sky Rocket Burger sign", caption: "Sky Rocket Burger against a wide-open sky — Deep Ellum" },
+  { thumb: "images/photography/thumbs/IMG_2968.webp", full: "images/photography/full/IMG_2968.webp", alt: "Deep Ellum neon sign", caption: "The Deep Ellum sign over The N9NES — Dallas" },
+  { thumb: "images/photography/thumbs/IMG_2972.webp", full: "images/photography/full/IMG_2972.webp", alt: "Ray Charles mural", caption: "Ray Charles mural, stars and keys — Deep Ellum" },
+  { thumb: "images/photography/thumbs/IMG_2980.webp", full: "images/photography/full/IMG_2980.webp", alt: "Sneakers on a power line", caption: "Shoefiti over Commerce St — Deep Ellum" },
   { thumb: "images/photography/thumbs/IMG_2005.webp", full: "images/photography/full/IMG_2005.webp", alt: "Southwest 737 takeoff", caption: "Southwest B737 rotation off 31R — DAL" },
   { thumb: "images/photography/thumbs/20260611_0022_01.webp", full: "images/photography/full/20260611_0022_01.webp", alt: "Flamingos", caption: "Flamingo flock at the Fort Worth Zoo — June 2026" },
   { thumb: "images/photography/thumbs/IMG_2258.webp", full: "images/photography/full/IMG_2258.webp", alt: "UTA big chair", caption: "The big UTA chair — campus landmark, UT Arlington" },
@@ -62,11 +67,33 @@ const photos = [
 ];
 
 // ─── Build Grid ───────────────────────────────────────────
+// Items are handed out round-robin across N columns (item 0 -> col 0,
+// item 1 -> col 1, ...) so newer entries at the front of the array
+// flow left-to-right across the top instead of stacking down one column.
 const grid = document.getElementById("photo-grid");
+const mobileQuery = window.matchMedia("(max-width: 600px)");
+let builtColumnCount = null;
 
-if (photos.length === 0) {
-  grid.innerHTML = `<p style="color:rgba(255,255,255,0.5);text-align:center;grid-column:1/-1;padding:4rem 0">Photos coming soon.</p>`;
-} else {
+function buildGrid() {
+  const columnCount = mobileQuery.matches ? 2 : 3;
+  if (columnCount === builtColumnCount) return;
+  builtColumnCount = columnCount;
+
+  grid.innerHTML = "";
+
+  if (photos.length === 0) {
+    grid.innerHTML = `<p style="color:rgba(255,255,255,0.5);text-align:center;padding:4rem 0">Photos coming soon.</p>`;
+    return;
+  }
+
+  const columns = [];
+  for (let c = 0; c < columnCount; c++) {
+    const col = document.createElement("div");
+    col.className = "photo-grid-col";
+    grid.appendChild(col);
+    columns.push(col);
+  }
+
   photos.forEach((photo, i) => {
     const item = document.createElement("div");
     item.className = "photo-grid-item";
@@ -75,9 +102,12 @@ if (photos.length === 0) {
       ${photo.caption ? `<div class="photo-caption">${photo.caption}</div>` : ""}
     `;
     item.addEventListener("click", () => openLightbox(i));
-    grid.appendChild(item);
+    columns[i % columnCount].appendChild(item);
   });
 }
+
+buildGrid();
+mobileQuery.addEventListener("change", buildGrid);
 
 // ─── Lightbox ─────────────────────────────────────────────
 let currentIndex = 0;

@@ -10,15 +10,26 @@
   margin-bottom: 3rem;
 }
 
-/* ─── Masonry Grid ───────────────────────────────────────── */
+/* ─── Masonry Grid ─────────────────────────────────────────
+   Built in JS as N column divs; items are handed out round-robin
+   (item 0 -> col 0, item 1 -> col 1, ...) so newer entries at the
+   front of the array flow left-to-right across the top instead of
+   stacking down a single column. */
 .photo-grid {
-  columns: 3 280px;
-  column-gap: 0.75rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+.photo-grid-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .photo-grid-item {
-  break-inside: avoid;
-  margin-bottom: 0.75rem;
   cursor: pointer;
   overflow: hidden;
   border-radius: 4px;
@@ -173,13 +184,9 @@
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .photo-grid {
-    columns: 2 140px;
-    column-gap: 0.5rem;
-  }
-
-  .photo-grid-item {
-    margin-bottom: 0.5rem;
+  .photo-grid,
+  .photo-grid-col {
+    gap: 0.5rem;
   }
 
   .lightbox-btn {
