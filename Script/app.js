@@ -14,7 +14,12 @@ if (ptOverlay) {
             const taglines = document.querySelector(".hero-taglines");
             if (taglines) taglines.classList.add("animate");
             const socials = document.querySelector(".hero-socials");
-            if (socials) socials.classList.add("animate");
+            if (socials) {
+              socials.classList.add("animate");
+              // Release the entrance animation once it finishes so hover
+              // transitions on the icons aren't pinned by its forwards fill
+              setTimeout(() => socials.classList.add("settled"), 1700);
+            }
           },
           { once: true },
         );
